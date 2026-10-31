@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-tint": "#a03b56",
+          "outline-variant": "#dbc0c3",
+          "on-primary-fixed": "#3f0016",
+          "tertiary-fixed": "#ece1cb",
+          "inverse-primary": "#ffb1c0",
+          "secondary-fixed-dim": "#ebc166",
+          "surface": "#fcf9f8",
+          "tertiary-container": "#484232",
+          "on-tertiary-fixed": "#201b0e",
+          "on-primary": "#ffffff",
+          "on-tertiary": "#ffffff",
+          "on-surface": "#1b1c1c",
+          "secondary": "#795902",
+          "surface-variant": "#e4e2e1",
+          "secondary-fixed": "#ffdf9e",
+          "on-secondary": "#ffffff",
+          "on-tertiary-container": "#b8ae9a",
+          "inverse-on-surface": "#f3f0f0",
+          "surface-container-highest": "#e4e2e1",
+          "on-primary-fixed-variant": "#81233f",
+          "surface-dim": "#dcd9d9",
+          "on-primary-container": "#ff8ca5",
+          "tertiary-fixed-dim": "#d0c5b0",
+          "on-error": "#ffffff",
+          "on-secondary-container": "#775800",
+          "surface-bright": "#fcf9f8",
+          "primary-fixed": "#ffd9df",
+          "on-secondary-fixed": "#261a00",
+          "on-tertiary-fixed-variant": "#4d4636",
+          "error": "#ba1a1a",
+          "primary-container": "#7b1e3a",
+          "on-surface-variant": "#554245",
+          "error-container": "#ffdad6",
+          "primary-fixed-dim": "#ffb1c0",
+          "on-background": "#1b1c1c",
+          "surface-container-high": "#eae7e7",
+          "secondary-container": "#fdd275",
+          "on-secondary-fixed-variant": "#5b4300",
+          "on-error-container": "#93000a",
+          "surface-container-low": "#f6f3f2",
+          "background": "#fcf9f8",
+          "inverse-surface": "#303030",
+          "primary": "#5d0325",
+          "tertiary": "#322c1d",
+          "surface-container": "#f0eded",
+          "outline": "#887175",
+          "surface-container-lowest": "#ffffff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-lg": "1.5rem",
+          "space-xl": "2.5rem",
+          "gutter": "1.5rem",
+          "space-sm": "0.5rem",
+          "margin-mobile": "1rem",
+          "space-xs": "0.25rem",
+          "margin": "2rem",
+          "space-md": "1rem",
+          "gutter-mobile": "1rem"
+        },
+        "fontFamily": {
+          "display-lg-mobile": [
+            "Playfair Display"
+          ],
+          "display-lg": [
+            "Playfair Display"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "body-sm": [
+            "Inter"
+          ],
+          "body-md": [
+            "Inter"
+          ],
+          "label-lg": [
+            "Inter"
+          ],
+          "title-md": [
+            "Inter"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "label-sm": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "headline-sm": [
+            "Playfair Display"
+          ]
+        },
+        "fontSize": {
+          "display-lg-mobile": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "display-lg": [
+            "48px",
+            {
+              "lineHeight": "56px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.03em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "title-md": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg-mobile": [
+            "26px",
+            {
+              "lineHeight": "34px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-md": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-sm": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-primary-container z-50 flex flex-col justify-between py-6"><div class="flex flex-col"><div class="px-6 mb-8"><div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-secondary-fixed text-[24px]">all_inclusive</span><span class="font-headline-md text-headline-md text-on-primary tracking-wide">Muhurat</span></div><div class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed font-semibold pl-8">The Royal Knot</div><div class="font-body-sm text-body-sm text-on-primary-container mt-1 pl-8 opacity-80">Palace Wedding Operations</div></div><nav class="flex flex-col space-y-1" data-active-classes="bg-secondary/20 text-secondary-fixed border-l-[3px] border-secondary-fixed font-semibold"><a class="flex items-center px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-[3px] border-transparent" data-path="enquiries" href="#">Enquiries</a><a class="flex items-center px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-[3px] border-transparent" data-path="agreements" href="#">Agreements</a><a class="flex items-center px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-[3px] border-transparent" data-path="quotes" href="#">Quotes</a><a class="flex items-center px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-[3px] border-transparent" data-path="wedding-plan" href="#">Wedding Plan</a><a class="flex items-center px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-[3px] border-transparent" data-path="muhurat-timeline" href="#">Muhurat Timeline</a><a class="flex items-center px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-[3px] border-transparent" data-path="settlement" href="#">Settlement</a><a aria-current="page" class="flex items-center px-6 py-3 transition-colors bg-secondary/20 text-secondary-fixed border-l-[3px] border-secondary-fixed font-semibold" data-path="season-review" href="#">Season Review</a></nav></div><div class="px-6"><div class="bg-primary p-4 rounded-lg flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-secondary-fixed uppercase">Heritage Network</span><span class="font-body-sm text-body-sm text-tertiary-fixed">Jaipur &amp; Udaipur</span></div><span class="material-symbols-outlined text-secondary-fixed text-[20px]">fort</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-gutter shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded-full text-secondary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">location_city</span><span>Jaipur &amp; Udaipur HQ</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs bg-secondary-container/30 px-space-sm py-1 rounded-full text-on-secondary-container font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[16px] text-secondary">sunny</span><span>Auspicious Muhurat: 19:42 IST</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden lg:block"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-60 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full pl-9 pr-space-md py-1.5 focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="Search royales, dates, folios..." type="text"/></div><button class="flex items-center gap-1.5 bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm px-space-sm py-1.5 rounded-lg transition-colors"><span class="material-symbols-outlined text-[16px]">add</span><span>Quick Entry</span></button><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Pooja Rathore</span><span class="font-label-sm text-label-sm text-secondary-fixed-variant leading-tight">Founder</span></div></div><a class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm ml-space-xs" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Sign out</span></a></div></header><main class="relative pt-16 w-full min-h-screen bg-surface"><div class="flex flex-col w-full">
+<!-- Executive Page Context & Header Bar -->
+<div class="px-margin py-space-lg flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div class="flex flex-col max-w-3xl">
+<div class="flex items-center gap-space-xs text-secondary mb-1">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">Founder Portfolio Audit • Confidential</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+        Season Review — FY 2026-27 Executive Performance Dossier
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+        Portfolio Financial Audits, Operating Margins &amp; Vendor Reliability Index (25 Heritage Celebrations across Udaipur, Jaipur, Jodhpur &amp; Ranthambore)
+      </p>
+</div>
+<!-- Action Toolbar -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="relative">
+<button class="flex items-center gap-2 bg-surface-container text-on-surface hover:bg-surface-variant px-space-md py-2 rounded-lg font-label-md text-label-md transition-colors shadow-sm" id="cityFilterBtn">
+<span class="material-symbols-outlined text-[18px] text-secondary">domain</span>
+<span>Estate / City: All Circuits</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</button>
+</div>
+<button class="flex items-center gap-2 bg-surface-container text-on-surface hover:bg-surface-variant px-space-md py-2 rounded-lg font-label-md text-label-md transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">ios_share</span>
+<span>Export Season Report (PDF/XLSX)</span>
+</button>
+<div class="relative group">
+<button class="flex items-center gap-2 bg-primary text-on-primary hover:bg-primary-container px-space-md py-2 rounded-lg font-label-md text-label-md transition-all shadow-md">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">share</span>
+<span>Share Report</span>
+<span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-margin space-y-space-xl pb-space-xl">
+<!-- Top Row: 4 Executive Stat Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Stat 1: Total Revenue -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 rounded-full bg-secondary-container/20 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Total Revenue (FY27)</span>
+<div class="w-9 h-9 rounded-lg bg-secondary-container/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">account_balance</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2 my-1">
+<span class="font-display-lg text-display-lg text-primary leading-none tracking-tight">₹68.45</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-semibold">Cr</span>
+</div>
+<div class="flex items-center gap-1.5 mt-space-sm text-on-surface-variant">
+<span class="inline-flex items-center text-xs font-semibold text-secondary-container bg-primary px-1.5 py-0.5 rounded">
+            +18.4% YoY
+          </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Across 25 Celebrations vs FY26</span>
+</div>
+</div>
+<!-- Stat 2: Total Net Profit -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-28 h-28 rounded-full bg-primary-fixed/20 pointer-events-none"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Net Agency Profit</span>
+<div class="w-9 h-9 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2 my-1">
+<span class="font-display-lg text-display-lg text-primary leading-none tracking-tight">₹14.82</span>
+<span class="font-headline-sm text-headline-sm text-primary-container font-semibold">Cr</span>
+</div>
+<div class="flex items-center gap-1.5 mt-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Net retained fee margin post disbursements</span>
+</div>
+</div>
+<!-- Stat 3: Average Margin -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Blended Operating Margin</span>
+<span class="px-2 py-0.5 rounded-full bg-[#EAF5F0] text-[#2E7D5B] font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D5B]"></span>
+            Healthy Yield
+          </span>
+</div>
+<div class="flex items-baseline gap-2 my-1">
+<span class="font-display-lg text-display-lg text-primary leading-none tracking-tight">21.65%</span>
+</div>
+<div class="flex items-center gap-1.5 mt-space-sm text-on-surface-variant">
+<span class="font-body-sm text-body-sm text-secondary font-semibold">+1.65%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Over agency ceiling benchmark (20.0%)</span>
+</div>
+</div>
+<!-- Stat 4: Dues in Next 30 Days -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Dues In Next 30 Days</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+            3 Milestones Due
+          </span>
+</div>
+<div class="flex items-baseline gap-2 my-1">
+<span class="font-display-lg text-display-lg text-primary leading-none tracking-tight">₹1.92</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-semibold">Cr</span>
+</div>
+<div class="flex items-center gap-1.5 mt-space-sm text-on-surface-variant">
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">5 upcoming milestone collections &amp; vendor escrows</span>
+</div>
+</div>
+</div>
+<!-- Section: Visual Analytics & Chart (Profit Contribution) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg pb-space-sm">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">bar_chart</span>
+<h2 class="font-headline-md text-headline-md text-primary">Profit Contribution &amp; Revenue Yield per Wedding</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+            Net agency retained profit in Lakhs (₹L) across top benchmark celebrations throughout Rajasthan palace circuits
+          </p>
+</div>
+<!-- Legend & Benchmark Indicator -->
+<div class="flex flex-wrap items-center gap-4 text-xs font-medium">
+<div class="flex items-center gap-1.5">
+<div class="w-3.5 h-3.5 rounded-sm bg-primary-container"></div>
+<span class="text-on-surface">Agency Net Profit (₹L)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-3.5 h-3.5 rounded-sm bg-secondary-container"></div>
+<span class="text-on-surface">Target Surplus Margin</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<div class="w-6 h-0.5 bg-outline"></div>
+<span>Portfolio Target Avg (₹60L)</span>
+</div>
+</div>
+</div>
+<!-- High-Fidelity Responsive SVG Bar Chart -->
+<div class="w-full overflow-x-auto">
+<div class="min-w-[760px] h-72 relative flex flex-col justify-end pt-6 pb-8">
+<!-- Benchmark Dotted Line (at ~60L) -->
+<div class="absolute left-10 right-4 top-[50%] h-px border-b border-dashed border-outline-variant pointer-events-none flex items-center justify-end">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] text-on-surface-variant font-mono -translate-y-3 font-semibold">Benchmark: ₹60.00L</span>
+</div>
+<!-- Benchmark Line at 100L -->
+<div class="absolute left-10 right-4 top-[22%] h-px border-b border-dashed border-outline-variant/60 pointer-events-none flex items-center justify-end">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] text-on-surface-variant font-mono -translate-y-3 font-semibold">Super-Yield: ₹100.00L</span>
+</div>
+<!-- Y-Axis Ticks -->
+<div class="absolute left-0 top-0 bottom-8 w-10 flex flex-col justify-between text-right pr-2 text-[10px] font-mono text-on-surface-variant">
+<span>₹140L</span>
+<span>₹100L</span>
+<span>₹60L</span>
+<span>₹20L</span>
+<span>₹0L</span>
+</div>
+<!-- The Bars Canvas -->
+<div class="ml-12 mr-4 h-full flex items-end justify-between gap-4 relative">
+<!-- 1: Singhania & Kapoor -->
+<div class="flex-1 flex flex-col items-center h-full justify-end group cursor-pointer">
+<span class="font-label-sm text-label-sm text-primary font-semibold mb-1 opacity-90 group-hover:scale-110 transition-transform">₹124.35L</span>
+<div class="w-full max-w-[48px] bg-primary-container rounded-t-lg transition-all group-hover:brightness-110 shadow-sm relative" style="height: 88%;">
+<div class="absolute inset-x-0 top-0 h-2 bg-secondary-container rounded-t-lg"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-2 truncate w-24 text-center">Singhania (UD)</span>
+<span class="text-[10px] text-on-surface-variant font-mono">29.6%</span>
+</div>
+<!-- 2: Piramal & Shah -->
+<div class="flex-1 flex flex-col items-center h-full justify-end group cursor-pointer">
+<span class="font-label-sm text-label-sm text-primary font-semibold mb-1 opacity-90 group-hover:scale-110 transition-transform">₹115.00L</span>
+<div class="w-full max-w-[48px] bg-primary-container rounded-t-lg transition-all group-hover:brightness-110 shadow-sm relative" style="height: 82%;">
+<div class="absolute inset-x-0 top-0 h-2 bg-secondary-container rounded-t-lg"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-2 truncate w-24 text-center">Piramal (JD)</span>
+<span class="text-[10px] text-on-surface-variant font-mono">22.8%</span>
+</div>
+<!-- 3: Oberoi & Birla -->
+<div class="flex-1 flex flex-col items-center h-full justify-end group cursor-pointer">
+<span class="font-label-sm text-label-sm text-primary font-semibold mb-1 opacity-90 group-hover:scale-110 transition-transform">₹108.40L</span>
+<div class="w-full max-w-[48px] bg-primary-container rounded-t-lg transition-all group-hover:brightness-110 shadow-sm relative" style="height: 77%;">
+<div class="absolute inset-x-0 top-0 h-2 bg-secondary-container rounded-t-lg"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-2 truncate w-24 text-center">Oberoi (JP)</span>
+<span class="text-[10px] text-on-surface-variant font-mono">24.1%</span>
+</div>
+<!-- 4: Mittal & Jindal -->
+<div class="flex-1 flex flex-col items-center h-full justify-end group cursor-pointer">
+<span class="font-label-sm text-label-sm text-primary font-semibold mb-1 opacity-90 group-hover:scale-110 transition-transform">₹92.50L</span>
+<div class="w-full max-w-[48px] bg-primary-container rounded-t-lg transition-all group-hover:brightness-110 shadow-sm relative" style="height: 66%;">
+<div class="absolute inset-x-0 top-0 h-2 bg-secondary-container rounded-t-lg"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-2 truncate w-24 text-center">Mittal (UD)</span>
+<span class="text-[10px] text-on-surface-variant font-mono">29.8%</span>
+</div>
+<!-- 5: Godrej & Tata -->
+<div class="flex-1 flex flex-col items-center h-full justify-end group cursor-pointer">
+<span class="font-label-sm text-label-sm text-primary font-semibold mb-1 opacity-90 group-hover:scale-110 transition-transform">₹84.10L</span>
+<div class="w-full max-w-[48px] bg-primary-container rounded-t-lg transition-all group-hover:brightness-110 shadow-sm relative" style="height: 60%;">
+<div class="absolute inset-x-0 top-0 h-1.5 bg-secondary-fixed rounded-t-lg"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-2 truncate w-24 text-center">Godrej (RT)</span>
+<span class="text-[10px] text-on-surface-variant font-mono">21.0%</span>
+</div>
+<!-- 6: Merchant & Joshi -->
+<div class="flex-1 flex flex-col items-center h-full justify-end group cursor-pointer">
+<span class="font-label-sm text-label-sm text-primary font-semibold mb-1 opacity-90 group-hover:scale-110 transition-transform">₹78.20L</span>
+<div class="w-full max-w-[48px] bg-primary-container rounded-t-lg transition-all group-hover:brightness-110 shadow-sm relative" style="height: 55%;">
+<div class="absolute inset-x-0 top-0 h-1.5 bg-secondary-fixed rounded-t-lg"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface mt-2 truncate w-24 text-center">Merchant (JP)</span>
+<span class="text-[10px] text-on-surface-variant font-mono">29.5%</span>
+</div>
+<!-- 7: Jaipuria & Ruia (Underperforming Alert Bar) -->
+<div class="flex-1 flex flex-col items-center h-full justify-end group cursor-pointer">
+<span class="font-label-sm text-label-sm text-error font-semibold mb-1 opacity-90 group-hover:scale-110 transition-transform">₹23.50L</span>
+<div class="w-full max-w-[48px] bg-surface-tint/60 rounded-t-lg transition-all group-hover:brightness-110 shadow-sm relative" style="height: 18%;">
+<div class="absolute inset-x-0 top-0 h-1.5 bg-error rounded-t-lg"></div>
+</div>
+<span class="font-label-sm text-label-sm text-error mt-2 truncate w-24 text-center">Ruia (UD)</span>
+<span class="text-[10px] text-error font-mono font-bold">11.2% ⚠</span>
+</div>
+<!-- 8: Somani & Singhal (Critical Underperformer) -->
+<div class="flex-1 flex flex-col items-center h-full justify-end group cursor-pointer">
+<span class="font-label-sm text-label-sm text-error font-semibold mb-1 opacity-90 group-hover:scale-110 transition-transform">₹10.20L</span>
+<div class="w-full max-w-[48px] bg-error-container rounded-t-lg transition-all group-hover:brightness-110 shadow-sm relative" style="height: 9%;">
+<div class="absolute inset-x-0 top-0 h-1 bg-error rounded-t-lg"></div>
+</div>
+<span class="font-label-sm text-label-sm text-error mt-2 truncate w-24 text-center">Somani (JP)</span>
+<span class="text-[10px] text-error font-mono font-bold">5.5% ⚠</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-2 pt-space-sm flex items-center justify-between text-xs text-on-surface-variant bg-surface-container-low px-4 py-2 rounded-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">info</span>
+<span><strong>Key Insight:</strong> 19 of 25 celebrations exceeded the target 20% margin threshold. 3 celebrations exhibited supplier overrun compression below 15%.</span>
+</div>
+<span class="font-mono text-secondary font-semibold">Highest Yield: Mittal &amp; Jindal (29.8% margin)</span>
+</div>
+</div>
+<!-- Section: Complete Weddings Performance Ledger -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Table Header & Filter Row -->
+<div class="p-space-lg pb-space-md flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">receipt_long</span>
+<h2 class="font-headline-md text-headline-md text-primary">Master Season Ledger • 25 Royal Weddings</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Realized revenues, direct vendor disbursements, operating charges and agency gross margin
+          </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Search input -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[16px]">search</span>
+<input class="bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-lg pl-9 pr-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-secondary w-56 placeholder:text-on-surface-variant/70" id="weddingSearchInput" placeholder="Search client, estate, folio..." type="text"/>
+</div>
+<!-- City Filter Pills -->
+<div class="inline-flex bg-surface-container-low p-0.5 rounded-lg text-xs">
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-primary font-semibold shadow-xs">All (25)</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-primary transition-colors">Udaipur (9)</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-primary transition-colors">Jaipur (8)</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-primary transition-colors">Jodhpur (5)</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-primary transition-colors">Barwara (3)</button>
+</div>
+<!-- Margin Filter -->
+<button class="flex items-center gap-1.5 bg-surface-container-low text-on-surface px-3 py-1.5 rounded-lg font-label-sm text-label-sm hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[16px] text-error">filter_alt</span>
+<span>Flagged Margins (&lt;15%)</span>
+</button>
+</div>
+</div>
+<!-- Ledger Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="bg-surface-container-low text-on-surface font-label-md text-label-md uppercase tracking-wider text-[11px]">
+<th class="py-3 px-space-md font-semibold">Date &amp; Folio</th>
+<th class="py-3 px-space-md font-semibold">Client &amp; Couple</th>
+<th class="py-3 px-space-md font-semibold">Palace Venue &amp; Circuit</th>
+<th class="py-3 px-space-md font-semibold text-right">Gross Revenue</th>
+<th class="py-3 px-space-md font-semibold text-right">Vendor Disbursal</th>
+<th class="py-3 px-space-md font-semibold text-right">Ops / Crew</th>
+<th class="py-3 px-space-md font-semibold text-right">Agency Net</th>
+<th class="py-3 px-space-md font-semibold text-center">Margin %</th>
+<th class="py-3 px-space-md font-semibold text-center">Audit</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high/60">
+<!-- Row 1: Singhania & Kapoor -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-space-md">
+<div class="font-label-md text-label-md text-on-surface">14 Feb 2027</div>
+<div class="font-mono text-[11px] text-secondary font-semibold">#UD-041</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="font-title-md text-title-md text-primary leading-snug">Aarav Singhania &amp; Meera Kapoor</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Industrialist Family • 620 Guests</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="text-on-surface font-medium">Jagmandir Island &amp; The Oberoi Udaivilas</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Udaipur
+                </div>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-on-surface">₹4,20,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹2,68,25,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹27,40,000</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-primary">₹1,24,35,000</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EAF5F0] text-[#2E7D5B]">
+                  29.6%
+                </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="text-secondary hover:text-primary transition-colors p-1" title="View Settlement Audit">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Joshi & Merchant -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-space-md">
+<div class="font-label-md text-label-md text-on-surface">28 Jan 2027</div>
+<div class="font-mono text-[11px] text-secondary font-semibold">#JP-022</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="font-title-md text-title-md text-primary leading-snug">Kabir Joshi &amp; Radhika Merchant</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Tech Founders • 480 Guests</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="text-on-surface font-medium">Rambagh Palace &amp; Jai Mahal</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Jaipur
+                </div>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-on-surface">₹2,65,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹1,68,30,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹18,50,000</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-primary">₹78,20,000</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EAF5F0] text-[#2E7D5B]">
+                  29.5%
+                </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="text-secondary hover:text-primary transition-colors p-1" title="View Settlement Audit">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Mittal & Jindal -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-space-md">
+<div class="font-label-md text-label-md text-on-surface">18 Jan 2027</div>
+<div class="font-mono text-[11px] text-secondary font-semibold">#UD-038</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="font-title-md text-title-md text-primary leading-snug">Aryan Mittal &amp; Ananya Jindal</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Conglomerate • 540 Guests</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="text-on-surface font-medium">The Leela Palace &amp; Fateh Prakash</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Udaipur
+                </div>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-on-surface">₹3,10,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹1,93,50,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹24,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-primary">₹92,50,000</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EAF5F0] text-[#2E7D5B]">
+                  29.8%
+                </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="text-secondary hover:text-primary transition-colors p-1" title="View Settlement Audit">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Piramal & Shah -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-space-md">
+<div class="font-label-md text-label-md text-on-surface">04 Dec 2026</div>
+<div class="font-mono text-[11px] text-secondary font-semibold">#JD-019</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="font-title-md text-title-md text-primary leading-snug">Aditya Piramal &amp; Natasha Shah</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Pharma Heir • 750 Guests</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="text-on-surface font-medium">Umaid Bhawan Palace &amp; Mehrangarh Fort</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Jodhpur
+                </div>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-on-surface">₹5,05,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹3,58,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹32,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-primary">₹1,15,00,000</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EAF5F0] text-[#2E7D5B]">
+                  22.8%
+                </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="text-secondary hover:text-primary transition-colors p-1" title="View Settlement Audit">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</button>
+</td>
+</tr>
+<!-- Row 5: Oberoi & Birla -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-space-md">
+<div class="font-label-md text-label-md text-on-surface">26 Nov 2026</div>
+<div class="font-mono text-[11px] text-secondary font-semibold">#JP-015</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="font-title-md text-title-md text-primary leading-snug">Rohan Oberoi &amp; Rhea Birla</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Hospitality • 580 Guests</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="text-on-surface font-medium">Samode Palace &amp; Haveli</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Jaipur
+                </div>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-on-surface">₹4,50,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹3,15,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹26,60,000</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-primary">₹1,08,40,000</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EAF5F0] text-[#2E7D5B]">
+                  24.1%
+                </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="text-secondary hover:text-primary transition-colors p-1" title="View Settlement Audit">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</button>
+</td>
+</tr>
+<!-- Row 6: Devendra Ruia & Tanya Jaipuria (UNDERPERFORMER 11.2% - RED ALERT) -->
+<tr class="bg-error-container/20 hover:bg-error-container/30 transition-colors">
+<td class="py-3.5 px-space-md">
+<div class="font-label-md text-label-md text-on-surface">12 Nov 2026</div>
+<div class="font-mono text-[11px] text-error font-semibold">#UD-029</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="font-title-md text-title-md text-primary leading-snug">Devendra Ruia &amp; Tanya Jaipuria</div>
+<div class="font-body-sm text-body-sm text-error font-medium">Overrun Flagged • 680 Guests</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="text-on-surface font-medium">Chhatra Sagar &amp; Taj Lake Palace</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Udaipur
+                </div>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-on-surface">₹2,10,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-error font-medium">₹1,72,30,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹14,20,000</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-error">₹23,50,000</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-error text-on-error">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+                  11.2%
+                </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="text-error hover:text-on-error-container transition-colors p-1" title="Vendor Dispute Audit Required">
+<span class="material-symbols-outlined text-[18px]">report_problem</span>
+</button>
+</td>
+</tr>
+<!-- Row 7: Siddharth Goenka & Alisha Mehta -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-space-md">
+<div class="font-label-md text-label-md text-on-surface">24 Oct 2026</div>
+<div class="font-mono text-[11px] text-secondary font-semibold">#RT-008</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="font-title-md text-title-md text-primary leading-snug">Siddharth Goenka &amp; Alisha Mehta</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Private Equity • 340 Guests</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="text-on-surface font-medium">Six Senses Fort Barwara</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Ranthambore
+                </div>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-on-surface">₹3,45,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹2,41,50,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹22,10,000</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-primary">₹81,40,000</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EAF5F0] text-[#2E7D5B]">
+                  23.6%
+                </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="text-secondary hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</button>
+</td>
+</tr>
+<!-- Row 8: Manav Somani & Krishi Singhal (CRITICAL UNDERPERFORMER 5.5% - RED ALERT) -->
+<tr class="bg-error-container/25 hover:bg-error-container/35 transition-colors">
+<td class="py-3.5 px-space-md">
+<div class="font-label-md text-label-md text-on-surface">15 Oct 2026</div>
+<div class="font-mono text-[11px] text-error font-semibold">#JP-011</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="font-title-md text-title-md text-primary leading-snug">Manav Somani &amp; Krishi Singhal</div>
+<div class="font-body-sm text-body-sm text-error font-medium">Floral Overrun Breach • 500 Guests</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="text-on-surface font-medium">Fairmont Palace Jaipur</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Jaipur
+                </div>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-on-surface">₹1,85,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-error font-medium">₹1,62,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹12,80,000</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-error">₹10,20,000</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-error text-on-error">
+<span class="material-symbols-outlined text-[13px]">priority_high</span>
+                  5.5%
+                </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="text-error hover:text-on-error-container transition-colors p-1" title="Vendor Dispute Audit Required">
+<span class="material-symbols-outlined text-[18px]">report_problem</span>
+</button>
+</td>
+</tr>
+<!-- Row 9: Vikramaditya Rathore & Sunaina Scindia (13.8% MARGIN - RED ALERT) -->
+<tr class="bg-error-container/15 hover:bg-error-container/25 transition-colors">
+<td class="py-3.5 px-space-md">
+<div class="font-label-md text-label-md text-on-surface">29 Sep 2026</div>
+<div class="font-mono text-[11px] text-error font-semibold">#JD-005</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="font-title-md text-title-md text-primary leading-snug">Vikramaditya Rathore &amp; Sunaina Scindia</div>
+<div class="font-body-sm text-body-sm text-error font-medium">Bespoke Aircraft Charter Escalation</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="text-on-surface font-medium">Balsamand Lake Palace</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Jodhpur
+                </div>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-on-surface">₹2,90,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-error font-medium">₹2,31,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹19,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-error">₹40,00,000</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-error text-on-error">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+                  13.8%
+                </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="text-error hover:text-on-error-container transition-colors p-1" title="Vendor Dispute Audit Required">
+<span class="material-symbols-outlined text-[18px]">report_problem</span>
+</button>
+</td>
+</tr>
+<!-- Row 10: Godrej & Tata -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-space-md">
+<div class="font-label-md text-label-md text-on-surface">12 Sep 2026</div>
+<div class="font-mono text-[11px] text-secondary font-semibold">#RT-003</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="font-title-md text-title-md text-primary leading-snug">Cyrus Godrej &amp; Shireen Tata</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Conglomerate • 410 Guests</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="text-on-surface font-medium">Aman-i-Khas &amp; Fort Barwara</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Ranthambore
+                </div>
+</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-on-surface">₹4,00,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹2,91,00,000</td>
+<td class="py-3.5 px-space-md text-right font-mono text-on-surface-variant">₹24,90,000</td>
+<td class="py-3.5 px-space-md text-right font-mono font-semibold text-primary">₹84,10,000</td>
+<td class="py-3.5 px-space-md text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EAF5F0] text-[#2E7D5B]">
+                  21.0%
+                </span>
+</td>
+<td class="py-3.5 px-space-md text-center">
+<button class="text-secondary hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination and Download Ledger Control -->
+<div class="p-space-md bg-surface-container-low/70 flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant text-xs">
+<div class="flex items-center gap-2">
+<span>Displaying <strong>1–10</strong> of <strong>25</strong> Royal Celebrations</span>
+<span class="h-3 w-px bg-surface-container-highest"></span>
+<span class="text-secondary font-medium cursor-pointer hover:underline">Download Full 25-Record Audit Ledger (CSV)</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant font-medium">Previous</button>
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-semibold">1</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant font-medium">2</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant font-medium">3</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-variant font-medium">Next</button>
+</div>
+</div>
+</div>
+<!-- Two-Column Grid: Vendor Scorecard & Upcoming Cash Flow Pipeline -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Column 1: Heritage Vendor Scorecard -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">workspace_premium</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Heritage Vendor Scorecard</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">FY27 Reliability, On-Time Dispatch &amp; Cost Variance Index</p>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container/30 px-2 py-0.5 rounded-full font-semibold">
+              6 Key Suppliers
+            </span>
+</div>
+<div class="space-y-space-sm">
+<!-- Vendor 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-semibold">Rajwada Caterers</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Royal Mewari Feast &amp; Banquets</div>
+</div>
+<div class="flex items-center gap-4 text-right">
+<div>
+<div class="font-mono text-xs font-semibold text-[#2E7D5B]">98.4% On-Time</div>
+<div class="text-[11px] text-on-surface-variant">4.9 ★ Tasting</div>
+</div>
+<span class="px-2 py-1 rounded text-[11px] font-semibold bg-[#EAF5F0] text-[#2E7D5B] font-mono">
+                  +0.6% (+₹72K)
+                </span>
+</div>
+</div>
+<!-- Vendor 2 (Dispute / Overrun warning) -->
+<div class="p-space-sm rounded-lg bg-error-container/20 flex items-center justify-between">
+<div>
+<div class="font-label-lg text-label-lg text-error font-semibold flex items-center gap-1">
+<span>Rathore Heritage Florals</span>
+<span class="material-symbols-outlined text-[15px] text-error">error</span>
+</div>
+<div class="font-body-sm text-body-sm text-error/80">Mandap &amp; Floral Architecture</div>
+</div>
+<div class="flex items-center gap-4 text-right">
+<div>
+<div class="font-mono text-xs font-semibold text-error">86.2% Dispatch</div>
+<div class="text-[11px] text-error/80">4.6 ★ Quality</div>
+</div>
+<span class="px-2 py-1 rounded text-[11px] font-bold bg-error text-on-error font-mono">
+                  +6.9% (+₹2.20L)
+                </span>
+</div>
+</div>
+<!-- Vendor 3 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-semibold">SkyMagic Drone Pyrotechnics</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Lake Pichola Aerial Shows</div>
+</div>
+<div class="flex items-center gap-4 text-right">
+<div>
+<div class="font-mono text-xs font-semibold text-[#2E7D5B]">100% On-Time</div>
+<div class="text-[11px] text-on-surface-variant">5.0 ★ Flawless</div>
+</div>
+<span class="px-2 py-1 rounded text-[11px] font-semibold bg-surface-container-high text-on-surface font-mono">
+                  Exact (0.0%)
+                </span>
+</div>
+</div>
+<!-- Vendor 4 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-semibold">Udaipur Royal Boat Ferries</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Lake Logistics &amp; Shikar Shuttles</div>
+</div>
+<div class="flex items-center gap-4 text-right">
+<div>
+<div class="font-mono text-xs font-semibold text-[#2E7D5B]">99.1% On-Time</div>
+<div class="text-[11px] text-on-surface-variant">4.8 ★ Rating</div>
+</div>
+<span class="px-2 py-1 rounded text-[11px] font-semibold bg-surface-container-high text-on-surface font-mono">
+                  Exact (0.0%)
+                </span>
+</div>
+</div>
+<!-- Vendor 5 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-semibold">Sound &amp; Acoustic Pro</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Courtyard Trussing &amp; Audio</div>
+</div>
+<div class="flex items-center gap-4 text-right">
+<div>
+<div class="font-mono text-xs font-semibold text-secondary">92.5% On-Time</div>
+<div class="text-[11px] text-on-surface-variant">4.7 ★ Acoustics</div>
+</div>
+<span class="px-2 py-1 rounded text-[11px] font-semibold bg-secondary-container/40 text-on-secondary-container font-mono">
+                  +2.1% (+₹60K)
+                </span>
+</div>
+</div>
+<!-- Vendor 6 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-semibold">House of Sabyasachi Valet</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Bridal Draping &amp; Wardrobe Stewards</div>
+</div>
+<div class="flex items-center gap-4 text-right">
+<div>
+<div class="font-mono text-xs font-semibold text-[#2E7D5B]">100% On-Time</div>
+<div class="text-[11px] text-on-surface-variant">4.9 ★ Styling</div>
+</div>
+<span class="px-2 py-1 rounded text-[11px] font-semibold bg-[#EAF5F0] text-[#2E7D5B] font-mono">
+                  -0.3% (-₹15K)
+                </span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between text-xs text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">gavel</span>
+            Procurement Action: Contract review scheduled for Rathore Florals
+          </span>
+<button class="font-semibold text-primary hover:underline">Download Audit PDF</button>
+</div>
+</div>
+<!-- Column 2: Upcoming Dues & Cash Flow Pipeline -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-sm mb-space-md gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">hourglass_top</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Upcoming Dues &amp; Escrow Releases</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rolling 30-Day Collections and Palace Disbursals</p>
+</div>
+<div class="bg-secondary-container/40 text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold font-mono self-start sm:self-auto">
+              ₹1,92,50,000 Pending
+            </div>
+</div>
+<!-- Itemized Pipeline Cards -->
+<div class="space-y-space-sm">
+<!-- Item 1: High Priority Due in 4 days -->
+<div class="p-space-sm rounded-lg bg-error-container/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-error text-[20px] mt-0.5">priority_high</span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-primary font-bold">Singhania &amp; Kapoor</span>
+<span class="font-mono text-[10px] text-secondary">#UD-041</span>
+</div>
+<div class="font-body-sm text-body-sm text-error font-medium">
+                    Final Settlement Balance • Client Receivable
+                  </div>
+<div class="text-[11px] text-on-surface-variant mt-0.5">
+                    Due in <strong class="text-error">4 days (22 Feb 2027)</strong>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center">
+<span class="font-mono text-base font-bold text-primary">₹47,80,000</span>
+<button class="bg-error text-on-error px-2 py-0.5 rounded text-[11px] font-semibold hover:brightness-110 mt-1">
+                  Send Notice
+                </button>
+</div>
+</div>
+<!-- Item 2: Mittal Tranche -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">schedule</span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Mittal &amp; Jindal</span>
+<span class="font-mono text-[10px] text-secondary">#UD-038</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+                    Tranche 02 Advance • Client Receivable
+                  </div>
+<div class="text-[11px] text-on-surface-variant mt-0.5">
+                    Due in <strong>11 days (01 Mar 2027)</strong>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center">
+<span class="font-mono text-base font-bold text-primary">₹62,50,000</span>
+<span class="text-[11px] text-secondary font-medium mt-1">Auto-Invoice Active</span>
+</div>
+</div>
+<!-- Item 3: Escrow release to Umaid Bhawan -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">account_balance_wallet</span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Piramal &amp; Shah</span>
+<span class="font-mono text-[10px] text-secondary">#JD-019</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+                    Escrow Release to Umaid Bhawan Palace • Vendor Payout
+                  </div>
+<div class="text-[11px] text-on-surface-variant mt-0.5">
+                    Authorized disbursement date: <strong>05 Mar 2027</strong>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center">
+<span class="font-mono text-base font-bold text-on-surface">₹45,20,000</span>
+<button class="bg-primary text-on-primary px-2 py-0.5 rounded text-[11px] font-semibold hover:bg-primary-container mt-1">
+                  Release Escrow
+                </button>
+</div>
+</div>
+<!-- Item 4: Goenka Tranche -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">schedule</span>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Goenka &amp; Mehta</span>
+<span class="font-mono text-[10px] text-secondary">#RT-008</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+                    Six Senses Fort Barwara Retainer • Client Receivable
+                  </div>
+<div class="text-[11px] text-on-surface-variant mt-0.5">
+                    Due in <strong>24 days (14 Mar 2027)</strong>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center">
+<span class="font-mono text-base font-bold text-primary">₹37,00,000</span>
+<span class="text-[11px] text-secondary font-medium mt-1">Reminder Scheduled</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Remind Actions Footer -->
+<div class="mt-space-md pt-space-sm flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 text-xs bg-surface-container px-2.5 py-1.5 rounded-lg text-on-surface hover:bg-surface-variant transition-colors font-medium">
+<span class="material-symbols-outlined text-[16px] text-[#2E7D5B]">chat</span>
+              WhatsApp Ping
+            </button>
+<button class="flex items-center gap-1.5 text-xs bg-surface-container px-2.5 py-1.5 rounded-lg text-on-surface hover:bg-surface-variant transition-colors font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary">mail</span>
+              Send Dunning Email
+            </button>
+</div>
+<button class="flex items-center gap-1 text-xs text-secondary font-semibold hover:underline">
+<span>Generate Escrow Release Slips</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Client-side search interactivity for the ledger
+    const searchInput = document.getElementById('weddingSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase();
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = text.includes(query) ? '' : 'none';
+        });
+      });
+    }
+  })();
+</script></main></div></body></html>

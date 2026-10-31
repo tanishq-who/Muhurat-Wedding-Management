@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "error-container": "#ffdad6",
+          "on-tertiary-fixed": "#201b0e",
+          "surface-bright": "#fcf9f8",
+          "on-primary-fixed-variant": "#81233f",
+          "on-error-container": "#93000a",
+          "inverse-surface": "#303030",
+          "surface": "#fcf9f8",
+          "on-secondary-fixed": "#261a00",
+          "primary": "#5d0325",
+          "primary-fixed-dim": "#ffb1c0",
+          "secondary": "#795902",
+          "on-tertiary": "#ffffff",
+          "surface-container-highest": "#e4e2e1",
+          "primary-fixed": "#ffd9df",
+          "error": "#ba1a1a",
+          "inverse-on-surface": "#f3f0f0",
+          "on-secondary-fixed-variant": "#5b4300",
+          "secondary-container": "#fdd275",
+          "tertiary": "#322c1d",
+          "on-background": "#1b1c1c",
+          "on-primary-fixed": "#3f0016",
+          "on-surface": "#1b1c1c",
+          "surface-tint": "#a03b56",
+          "secondary-fixed-dim": "#ebc166",
+          "inverse-primary": "#ffb1c0",
+          "surface-variant": "#e4e2e1",
+          "on-secondary": "#ffffff",
+          "tertiary-fixed": "#ece1cb",
+          "surface-container-lowest": "#ffffff",
+          "surface-dim": "#dcd9d9",
+          "outline": "#887175",
+          "on-primary-container": "#ff8ca5",
+          "tertiary-fixed-dim": "#d0c5b0",
+          "surface-container-low": "#f6f3f2",
+          "on-tertiary-fixed-variant": "#4d4636",
+          "surface-container": "#f0eded",
+          "tertiary-container": "#484232",
+          "on-tertiary-container": "#b8ae9a",
+          "primary-container": "#7b1e3a",
+          "surface-container-high": "#eae7e7",
+          "outline-variant": "#dbc0c3",
+          "secondary-fixed": "#ffdf9e",
+          "on-surface-variant": "#554245",
+          "on-primary": "#ffffff",
+          "background": "#fcf9f8",
+          "on-secondary-container": "#775800",
+          "on-error": "#ffffff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "margin": "2rem",
+          "gutter": "1.5rem",
+          "space-md": "1rem",
+          "space-xl": "2.5rem",
+          "gutter-mobile": "1rem",
+          "space-lg": "1.5rem",
+          "space-sm": "0.5rem",
+          "space-xs": "0.25rem",
+          "margin-mobile": "1rem"
+        },
+        "fontFamily": {
+          "label-lg": [
+            "Inter"
+          ],
+          "display-lg": [
+            "Playfair Display"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "title-md": [
+            "Inter"
+          ],
+          "body-sm": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "label-sm": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "display-lg-mobile": [
+            "Playfair Display"
+          ],
+          "headline-sm": [
+            "Playfair Display"
+          ],
+          "body-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "48px",
+            {
+              "lineHeight": "56px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg-mobile": [
+            "26px",
+            {
+              "lineHeight": "34px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "title-md": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-md": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.03em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg-mobile": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-sm": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-primary-container z-50 flex flex-col justify-between py-6"><div class="flex flex-col"><div class="px-6 mb-8"><div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-secondary-fixed text-[24px]">all_inclusive</span><span class="font-headline-md text-headline-md text-on-primary tracking-wide">Muhurat</span></div><div class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed font-semibold pl-8">The Royal Knot</div><div class="font-body-sm text-body-sm text-on-primary-container mt-1 pl-8 opacity-80">Palace Wedding Operations</div></div><nav class="flex flex-col space-y-1" data-active-classes="bg-secondary/20 text-secondary-fixed border-l-4 border-secondary-fixed font-semibold pl-5"><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="enquiries" href="#"><span class="material-symbols-outlined text-[20px]">inbox</span><span>Enquiries</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="agreements" href="#"><span class="material-symbols-outlined text-[20px]">history_edu</span><span>Agreements</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="quotes" href="#"><span class="material-symbols-outlined text-[20px]">request_quote</span><span>Quotes</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="wedding-plan" href="#"><span class="material-symbols-outlined text-[20px]">event_seat</span><span>Wedding Plan</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="muhurat-timeline" href="#"><span class="material-symbols-outlined text-[20px]">schedule</span><span>Muhurat Timeline</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="settlement" href="#"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span><span>Settlement</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="season-review" href="#"><span class="material-symbols-outlined text-[20px]">bar_chart</span><span>Season Review</span></a></nav></div><div class="px-6"><div class="bg-primary p-4 rounded-lg flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-secondary-fixed uppercase">Heritage Network</span><span class="font-body-sm text-body-sm text-tertiary-fixed">Jaipur &amp; Udaipur</span></div><span class="material-symbols-outlined text-secondary-fixed text-[20px]">fort</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-gutter shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded-full text-secondary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">location_city</span><span>Jaipur &amp; Udaipur HQ</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs bg-secondary-container/30 px-space-sm py-1 rounded-full text-on-secondary-container font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[16px] text-secondary">sunny</span><span>Auspicious Muhurat: 19:42 IST</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden lg:block"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-60 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full pl-9 pr-space-md py-1.5 focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="Search royales, dates, folios..." type="text"/></div><button class="flex items-center gap-1.5 bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm px-space-sm py-1.5 rounded-lg transition-colors"><span class="material-symbols-outlined text-[16px]">add</span><span>Quick Entry</span></button><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Pooja Rathore</span><span class="font-label-sm text-label-sm text-secondary-fixed-variant leading-tight">Founder</span></div></div><a class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm ml-space-xs" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Sign out</span></a></div></header><main class="relative pt-16 w-full min-h-screen bg-surface"><div class="flex flex-col w-full">
+<script>
+    (function highlightActiveNav() {
+      const activeLink = document.querySelector('aside nav a[data-path="wedding-plan"]');
+      if (activeLink) {
+        document.querySelectorAll('aside nav a').forEach(el => {
+          el.className = 'flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent';
+        });
+        activeLink.className = 'flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg bg-secondary/20 text-secondary-fixed border-l-4 border-secondary-fixed font-semibold pl-5 transition-colors';
+      }
+    })();
+  </script>
+<div class="p-margin flex flex-col gap-space-lg max-w-[1600px] mx-auto w-full">
+<!-- Breadcrumb & Page Header -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm font-label-sm text-label-sm text-secondary tracking-widest uppercase">
+<span class="flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[16px] text-secondary">domain</span>
+            Udaipur Portfolio
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="text-tertiary font-medium">Jagmandir &amp; Udaivilas</span>
+<span class="text-outline-variant">•</span>
+<span class="bg-surface-container px-2 py-0.5 rounded-full text-primary font-semibold text-label-sm tracking-wider">#WED-2027-0214</span>
+</div>
+<div class="flex items-baseline gap-space-md flex-wrap mt-1">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+            Wedding Plan: Aarav Singhania &amp; Meera Kapoor
+          </h1>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">hotel_class</span>
+          Heritage Multi-Estate Celebrations • Udaipur (Jagmandir Island Palace &amp; The Oberoi Udaivilas)
+        </p>
+</div>
+<!-- Header Action Group -->
+<div class="flex items-center gap-space-sm shrink-0 flex-wrap">
+<button class="flex items-center gap-2 bg-surface-container-low hover:bg-surface-container text-tertiary px-space-md py-2.5 rounded-lg shadow-sm font-label-lg text-label-lg transition-all" id="filterBtn">
+<span class="material-symbols-outlined text-[18px] text-secondary">tune</span>
+<span>Filter Tasks</span>
+</button>
+<button class="flex items-center gap-2 bg-surface-container-low hover:bg-surface-container text-tertiary px-space-md py-2.5 rounded-lg shadow-sm font-label-lg text-label-lg transition-all">
+<span class="material-symbols-outlined text-[18px] text-primary">picture_as_pdf</span>
+<span>Export Plan (PDF)</span>
+</button>
+<button class="flex items-center gap-2 bg-primary-container hover:bg-primary text-on-primary px-space-md py-2.5 rounded-lg shadow-md font-label-lg text-label-lg transition-all transform active:scale-95" id="addTaskBtn">
+<span class="material-symbols-outlined text-[18px]">add_task</span>
+<span class="font-semibold">+ Add Task</span>
+</button>
+</div>
+</div>
+<!-- Top Summary Strip / Bento Metrics -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-gutter">
+<!-- Metric 1: Days to Go -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between relative overflow-hidden">
+<div class="flex flex-col gap-0.5 z-10">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-secondary">wb_twilight</span>
+            Auspicious Countdown
+          </span>
+<span class="font-display-lg text-headline-lg text-primary tracking-tight font-semibold" id="countdownVal">368 Days</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">stars</span>
+            Target: 14 Feb 2027 (Basant Muhurat)
+          </span>
+</div>
+<div class="w-14 h-14 rounded-full bg-secondary-fixed/40 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[28px]">hourglass_top</span>
+</div>
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-secondary-fixed/10 pointer-events-none"></div>
+</div>
+<!-- Metric 2: Guest Count -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between relative overflow-hidden">
+<div class="flex flex-col gap-0.5 z-10">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">group</span>
+            Guest Royal Manifest
+          </span>
+<span class="font-display-lg text-headline-lg text-tertiary tracking-tight font-semibold">450 Confirmed</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+            180 VVIP Suites Allocated
+          </span>
+</div>
+<div class="w-14 h-14 rounded-full bg-surface-container-low flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[28px]">diversity_3</span>
+</div>
+</div>
+<!-- Metric 3: Total Wedding Budget & Allocation -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">account_balance</span>
+            Fiscal Grand Total
+          </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-semibold">45% Allocated</span>
+</div>
+<div class="flex items-baseline justify-between my-1">
+<span class="font-headline-lg text-headline-lg text-primary tracking-tight font-semibold">₹3.20 Cr</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Spent: ₹1.45 Cr</span>
+</div>
+<!-- Budget Mini Progress Bar -->
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full transition-all duration-500" style="width: 45.3%"></div>
+</div>
+</div>
+<!-- Metric 4: Current Phase -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between relative overflow-hidden">
+<div class="flex flex-col gap-0.5 z-10">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">flag</span>
+            Milestone Stage
+          </span>
+<span class="font-headline-sm text-headline-sm text-tertiary tracking-tight font-semibold">Phase II Lock-in</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">sync</span>
+            Decor &amp; Production Finalization
+          </span>
+</div>
+<div class="w-14 h-14 rounded-full bg-surface-container-low flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[26px]">task_alt</span>
+</div>
+</div>
+</div>
+<!-- Visual Heritage Showcase Strip -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col md:flex-row items-center gap-space-md">
+<div class="w-full md:w-48 h-28 rounded-lg overflow-hidden shrink-0 shadow-inner relative">
+<img class="w-full h-full object-cover" data-alt="Panoramic twilight photography of Jagmandir Island Palace floating on Lake Pichola in Udaipur with golden courtyard illumination, floral marigold canopies, warm evening reflections on gentle water waves, regal Indian architectural luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpG92r8TxWUkQ2zbs28SquUrI329RiKw7alE29KhTaw0MpKdsveQ8T8SiyyTVIB5uV_UBgx9EYS6NbfNZxUIyFxjXEF3O-fIzWAZW7ONQKhGos7ddDDLtkbOo1dp30UeBzh_tvd-PMJjZVYLx0tJ_QXGQ8pfSD1iCzSIfAbgN055TMj04s1f_CRY-1SCgpQav0Jdl-OCiQfRkXwy2B55doQjaT3k1ZBqa8xawzIlU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-2">
+<span class="font-label-sm text-label-sm text-on-primary font-semibold">Jagmandir Island</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-semibold uppercase tracking-wider">Venue Dispatch</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Lake Pichola Heritage Circuit</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-tertiary font-semibold">Dual Estate Island &amp; Courtyard Protocol</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-0.5">
+          Mandap installation confirmed at Jagmandir Courtyard for Sunset Muhurat (17:45 IST). Udaivilas Promenade reserved for Royal Baraat assembly with 12 ceremonial Marwari horses and brass ensemble.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<div class="w-24 h-24 rounded-lg overflow-hidden hidden xl:block shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Close-up detail of opulent Rajasthani wedding decor featuring antique brass Urli bowls with floating crimson roses, jasmine garlands, and carved sandstone pavilion details under warm ambient lanterns." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp5fYtR7V_dknW0HM9Gf3U0cUkdkTQdTbcel3UN93baZd_37h5LlF0CHkdqC7NbLZvXDmWBXe7aAywiZSG0eeuCBF6oo3y6vr86-ASl0dtd-W2y59O8mzSl3km3XqMciSKS0FFrFVHZD0RRsPev5ThceuEhT1nvVHUZHK21VPylfRwSYJp9lT81lr7r_9Kr6-1xSeuWgyMLKENmlgijbeE62737wTeksmc_hdq0ys"/>
+</div>
+<div class="w-24 h-24 rounded-lg overflow-hidden hidden xl:block shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Lavish royal sangeet stage setup featuring intricate gold jharokha backdrops, deep maroon velour drapery, and crystal chandeliers glowing with warm regal light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdeMFtVWfoBndf300dnksF-_ZN0ymy34bfEnOZ2grkZ1z23q3NjWmdmVeuGucC_FLX27vP5xJcYo7WEpBbNUfRXzqz9cGnFcPus86k60d27wCvy8IeoMyxSCoxTZx17DzM0VXJ_geH6rXFQL7TfxVX2J3OljXlz3-a0qGC0RlAqKE8r7PUAKrL7ePFNG9GaKym4M4gbMHmBpXKkxvSbFbvzYHBhNZdIhR90eICEIU"/>
+</div>
+</div>
+</div>
+<!-- Payment Milestone Cards -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">payments</span>
+<h2 class="font-headline-md text-headline-md text-primary">Payment Milestones &amp; Escrow Tranches</h2>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-medium">Standard Heritage Schedule (3-Tier)</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1: Booking Advance (Paid) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between transition-all hover:shadow-md relative overflow-hidden group">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm tracking-wide font-semibold text-tertiary uppercase">Tranche 01</span>
+<span class="flex items-center gap-1 font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container font-semibold text-[#2E7D5B]">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Paid</span>
+</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold">Booking Advance / Royal Token</h3>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-title-md text-title-md text-outline">₹</span>
+<span class="font-display-lg text-headline-lg font-bold text-tertiary">35,00,000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant ml-1">(₹35 Lakhs)</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2.5 mt-1">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-tertiary">Vault Receipt #VR-908</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Settled on 18 Aug 2025 • HDFC Royal Escrow</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between bg-surface-container-lowest">
+<span class="font-label-sm text-label-sm text-[#2E7D5B] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">account_balance_wallet</span>
+              Cleared &amp; Disbursed to Palaces
+            </span>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors text-[20px]">chevron_right</span>
+</div>
+</div>
+<!-- Card 2: Advance Tranche (Due One Month Before) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between transition-all hover:shadow-md relative overflow-hidden group">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm tracking-wide font-semibold text-tertiary uppercase">Tranche 02 (50%)</span>
+<span class="flex items-center gap-1 font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-secondary-container/40 font-semibold text-on-secondary-container">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>Due in 11 Mos</span>
+</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold">Advance Tranche (50%)</h3>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-title-md text-title-md text-outline">₹</span>
+<span class="font-display-lg text-headline-lg font-bold text-tertiary">1,25,00,000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant ml-1">(₹1.25 Cr)</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2.5 mt-1">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">event</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-tertiary">Due Date: 14 Jan 2027</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Decor mobilization, culinary advance &amp; artist locks</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">pending_actions</span>
+              Bank Guarantee Pending
+            </span>
+<button class="font-label-sm text-label-sm text-primary font-semibold hover:underline">View Schedule</button>
+</div>
+</div>
+<!-- Card 3: Final Settlement (After Wedding) -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between transition-all hover:shadow-md relative overflow-hidden group">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm tracking-wide font-semibold text-tertiary uppercase">Tranche 03 (Balance)</span>
+<span class="flex items-center gap-1 font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px]">lock_clock</span>
+<span>After Wedding</span>
+</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold">Final Settlement</h3>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-title-md text-title-md text-outline">₹</span>
+<span class="font-display-lg text-headline-lg font-bold text-tertiary">1,60,00,000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant ml-1">(₹1.60 Cr)</span>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3 flex items-start gap-2.5 mt-1">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">balance</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-tertiary">Audit Date: 18 Feb 2027</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Final reconciliation &amp; vendor disbursals</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+              Post-Reception Audit
+            </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pending Delivery</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Kanban Task Board -->
+<div class="flex flex-col gap-space-sm mt-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">view_kanban</span>
+<h2 class="font-headline-md text-headline-md text-primary">Operations &amp; Task Pipeline</h2>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Showing 8 Active Deliverables</span>
+<div class="h-4 w-px bg-surface-container-highest"></div>
+<button class="font-label-sm text-label-sm text-primary font-semibold hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">view_timeline</span>
+            Timeline View
+          </button>
+</div>
+</div>
+<!-- 3 Kanban Columns Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-start">
+<!-- ================= COLUMN 1: TO PLAN ================= -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-md shadow-sm">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-secondary inline-block"></span>
+<h3 class="font-headline-sm text-headline-sm text-tertiary font-semibold">To Plan</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-bold ml-1">3</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1" title="Add to To Plan">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<!-- Cards in Col 1 -->
+<div class="flex flex-col gap-space-md">
+<!-- Card 1: Fireworks & Drone -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group cursor-pointer">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-surface-container text-primary font-semibold">
+                  Reception
+                </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Medium
+                </span>
+</div>
+<h4 class="font-title-md text-title-md text-tertiary group-hover:text-primary transition-colors font-semibold">
+                Finalize Fireworks &amp; Drone Light Show Permits
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Clearance needed from Udaipur Lake Police and Collectorate for mid-lake synchronized aerial display over Pichola.
+              </p>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold shadow-sm">
+                    AS
+                  </div>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">Aryan Sharma</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-secondary">calendar_today</span>
+<span>28 Nov 2026</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Royal Safa Selection -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group cursor-pointer">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-surface-container text-primary font-semibold">
+                  Wedding
+                </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-semibold">
+                  Normal
+                </span>
+</div>
+<h4 class="font-title-md text-title-md text-tertiary group-hover:text-primary transition-colors font-semibold">
+                Royal Safa (Turban) &amp; Dupatta Fabric Selection
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Select pure Kota Doria and Leheriya fabrics with Singhania royal crest embroidery for 150 baraati groomsmen.
+              </p>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-sm text-label-sm font-bold shadow-sm">
+                    DR
+                  </div>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">Devika Rao</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-secondary">calendar_today</span>
+<span>10 Dec 2026</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Folk Artists -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group cursor-pointer">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-surface-container text-primary font-semibold">
+                  Mehendi
+                </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                  High
+                </span>
+</div>
+<h4 class="font-title-md text-title-md text-tertiary group-hover:text-primary transition-colors font-semibold">
+                Curate Folk Artists &amp; Manganiyar Troupe
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Contract Padam Shri awardee Manganiyar vocalists and Ghoomar master dancers for the Manek Chowk daylight soiree.
+              </p>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold shadow-sm">
+                    PR
+                  </div>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">Pooja Rathore</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-secondary">calendar_today</span>
+<span>15 Dec 2026</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= COLUMN 2: IN PROGRESS ================= -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-md shadow-sm">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-primary inline-block"></span>
+<h3 class="font-headline-sm text-headline-sm text-tertiary font-semibold">In Progress</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-bold ml-1">3</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1" title="Add to In Progress">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<!-- Cards in Col 2 -->
+<div class="flex flex-col gap-space-md">
+<!-- Card 4: Boat Logistics -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group cursor-pointer">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-surface-container text-secondary font-semibold">
+                  Venue
+                </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-semibold flex items-center gap-1 animate-pulse">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+                  Urgent
+                </span>
+</div>
+<h4 class="font-title-md text-title-md text-tertiary group-hover:text-primary transition-colors font-semibold">
+                Jagmandir Lake Jetty Boat Transfer Logistics
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                14 covered luxury royal solar ferries scheduled between Udaivilas private ghat &amp; Jagmandir. Passenger manifests in review.
+              </p>
+<!-- Progress bar on in-flight task -->
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 70%"></div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-tertiary-container text-tertiary-fixed flex items-center justify-center font-label-sm text-label-sm font-bold shadow-sm">
+                    RM
+                  </div>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">Rohan Mehta</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm font-semibold text-primary">
+<span class="material-symbols-outlined text-[15px] text-primary">calendar_today</span>
+<span>05 Nov 2026</span>
+</div>
+</div>
+</div>
+<!-- Card 5: Stage Floral Mockup -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group cursor-pointer">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-surface-container text-primary font-semibold">
+                  Sangeet
+                </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                  High
+                </span>
+</div>
+<h4 class="font-title-md text-title-md text-tertiary group-hover:text-primary transition-colors font-semibold">
+                Sangeet Stage 3D Architectural Floral Mockup
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Rendering grand mirror-work arches and imported Dutch tuberose installations for Udaivilas Ballroom review with bride's family.
+              </p>
+<!-- Progress bar on in-flight task -->
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 50%"></div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-sm text-label-sm font-bold shadow-sm">
+                    DR
+                  </div>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">Devika Rao</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-secondary">calendar_today</span>
+<span>18 Nov 2026</span>
+</div>
+</div>
+</div>
+<!-- Card 6: Acoustic Licensing -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group cursor-pointer">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-surface-container text-tertiary font-semibold">
+                  Vendors
+                </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container/40 text-on-secondary-container font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">sync</span>
+                  In Review
+                </span>
+</div>
+<h4 class="font-title-md text-title-md text-tertiary group-hover:text-primary transition-colors font-semibold">
+                Sound &amp; Acoustic Licensing for Pichola Shoreline
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Decibel zoning study and PPL / IPRS licensing submission for the midnight after-party courtyard setup.
+              </p>
+<!-- Progress bar on in-flight task -->
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 85%"></div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold shadow-sm">
+                    AS
+                  </div>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">Aryan Sharma</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-secondary">calendar_today</span>
+<span>25 Nov 2026</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= COLUMN 3: DONE ================= -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-md shadow-sm">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-[#2E7D5B] inline-block"></span>
+<h3 class="font-headline-sm text-headline-sm text-tertiary font-semibold">Done</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-tertiary font-bold ml-1">2</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1" title="View Archive">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</button>
+</div>
+<!-- Cards in Col 3 -->
+<div class="flex flex-col gap-space-md">
+<!-- Card 7: Palace Venue Lock -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group cursor-pointer opacity-95">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-surface-container text-secondary font-semibold">
+                  Venue
+                </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container font-semibold text-[#2E7D5B] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+                  Completed
+                </span>
+</div>
+<h4 class="font-title-md text-title-md text-tertiary line-through decoration-outline/60 group-hover:text-primary transition-colors font-semibold">
+                Palace Venue Lock &amp; Royal Mandate Signed
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Full buyout agreements executed for Jagmandir Palace Island (14 Feb) and Oberoi Udaivilas suite wings (12-15 Feb).
+              </p>
+<div class="bg-surface-container-low rounded p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[#2E7D5B] text-[16px]">verified</span>
+<span class="font-label-sm text-label-sm text-tertiary">Signed by Pooja Rathore &amp; General Manager</span>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold shadow-sm">
+                    PR
+                  </div>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">Pooja Rathore</span>
+</div>
+<div class="flex items-center gap-1 text-[#2E7D5B] font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">event_available</span>
+<span>18 Aug 2025</span>
+</div>
+</div>
+</div>
+<!-- Card 8: Catering RFP -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm hover:shadow-md transition-all flex flex-col gap-space-sm group cursor-pointer opacity-95">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-surface-container text-tertiary font-semibold">
+                  Vendors
+                </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container font-semibold text-[#2E7D5B] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+                  Completed
+                </span>
+</div>
+<h4 class="font-title-md text-title-md text-tertiary line-through decoration-outline/60 group-hover:text-primary transition-colors font-semibold">
+                Catering RFP Selection: Rajwada Caterers Approved
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Four-day bespoke menu curated featuring authentic Mewari royal thalis, live Awadhi dum pukht stations, and artisanal continental lounge.
+              </p>
+<div class="bg-surface-container-low rounded p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">restaurant</span>
+<span class="font-label-sm text-label-sm text-tertiary">Menu tasting cleared with Singhania family</span>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold shadow-sm">
+                    PR
+                  </div>
+<span class="font-label-sm text-label-sm text-tertiary font-medium">Pooja Rathore</span>
+</div>
+<div class="flex items-center gap-1 text-[#2E7D5B] font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">event_available</span>
+<span>02 Sep 2025</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Add Task Interactive Modal (Hidden by default, triggered via JS) -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity" id="addTaskModal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-lg shadow-xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">add_task</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">New Operation Milestone</h3>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1" id="closeModalBtn">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="flex flex-col gap-space-sm" id="newTaskForm" onsubmit="event.preventDefault(); alert('Milestone dispatched to royal workflow.'); document.getElementById('addTaskModal').classList.add('hidden');">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Task Deliverable</label>
+<input class="bg-surface-container-low px-space-sm py-2 rounded-lg text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest shadow-sm" placeholder="e.g. Royal Silverware Inventory Audit" required="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Category</label>
+<select class="bg-surface-container-low px-space-sm py-2 rounded-lg text-body-md text-on-surface focus:outline-none shadow-sm">
+<option>Venue</option>
+<option>Design</option>
+<option>Vendors</option>
+<option>Mehendi</option>
+<option>Sangeet</option>
+<option>Wedding</option>
+<option>Reception</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Owner</label>
+<select class="bg-surface-container-low px-space-sm py-2 rounded-lg text-body-md text-on-surface focus:outline-none shadow-sm">
+<option>Pooja Rathore (Lead)</option>
+<option>Devika Rao</option>
+<option>Aryan Sharma</option>
+<option>Rohan Mehta</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Due Target Date</label>
+<input class="bg-surface-container-low px-space-sm py-2 rounded-lg text-body-md text-on-surface focus:outline-none shadow-sm" type="date" value="2026-12-01"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Column Bucket</label>
+<select class="bg-surface-container-low px-space-sm py-2 rounded-lg text-body-md text-on-surface focus:outline-none shadow-sm">
+<option>To Plan</option>
+<option>In Progress</option>
+<option>Done</option>
+</select>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm mt-space-sm">
+<button class="px-space-md py-2 rounded-lg text-body-md text-on-surface-variant hover:bg-surface-container-low" id="cancelModalBtn" type="button">Cancel</button>
+<button class="bg-primary hover:bg-primary-container text-on-primary font-semibold px-space-lg py-2 rounded-lg shadow-md transition-all" type="submit">Create Milestone</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Inline Script for Micro-Interactions -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('addTaskModal');
+      const addBtn = document.getElementById('addTaskBtn');
+      const closeBtn = document.getElementById('closeModalBtn');
+      const cancelBtn = document.getElementById('cancelModalBtn');
+
+      if (addBtn && modal) {
+        addBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+      }
+      if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+      }
+      if (cancelBtn && modal) {
+        cancelBtn.addEventListener('click', () => modal.classList.add('hidden'));
+      }
+
+      // Filter Toggle Feedback
+      const filterBtn = document.getElementById('filterBtn');
+      if (filterBtn) {
+        filterBtn.addEventListener('click', () => {
+          alert('Task Filter active: Displaying high-impact milestones across Udaipur estates.');
+        });
+      }
+    });
+  </script>
+</div></main></div></body></html>

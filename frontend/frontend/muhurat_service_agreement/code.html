@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "error-container": "#ffdad6",
+          "on-tertiary-fixed": "#201b0e",
+          "surface-bright": "#fcf9f8",
+          "on-primary-fixed-variant": "#81233f",
+          "on-error-container": "#93000a",
+          "inverse-surface": "#303030",
+          "surface": "#fcf9f8",
+          "on-secondary-fixed": "#261a00",
+          "primary": "#5d0325",
+          "primary-fixed-dim": "#ffb1c0",
+          "secondary": "#795902",
+          "on-tertiary": "#ffffff",
+          "surface-container-highest": "#e4e2e1",
+          "primary-fixed": "#ffd9df",
+          "error": "#ba1a1a",
+          "inverse-on-surface": "#f3f0f0",
+          "on-secondary-fixed-variant": "#5b4300",
+          "secondary-container": "#fdd275",
+          "tertiary": "#322c1d",
+          "on-background": "#1b1c1c",
+          "on-primary-fixed": "#3f0016",
+          "on-surface": "#1b1c1c",
+          "surface-tint": "#a03b56",
+          "secondary-fixed-dim": "#ebc166",
+          "inverse-primary": "#ffb1c0",
+          "surface-variant": "#e4e2e1",
+          "on-secondary": "#ffffff",
+          "tertiary-fixed": "#ece1cb",
+          "surface-container-lowest": "#ffffff",
+          "surface-dim": "#dcd9d9",
+          "outline": "#887175",
+          "on-primary-container": "#ff8ca5",
+          "tertiary-fixed-dim": "#d0c5b0",
+          "surface-container-low": "#f6f3f2",
+          "on-tertiary-fixed-variant": "#4d4636",
+          "surface-container": "#f0eded",
+          "tertiary-container": "#484232",
+          "on-tertiary-container": "#b8ae9a",
+          "primary-container": "#7b1e3a",
+          "surface-container-high": "#eae7e7",
+          "outline-variant": "#dbc0c3",
+          "secondary-fixed": "#ffdf9e",
+          "on-surface-variant": "#554245",
+          "on-primary": "#ffffff",
+          "background": "#fcf9f8",
+          "on-secondary-container": "#775800",
+          "on-error": "#ffffff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "margin": "2rem",
+          "gutter": "1.5rem",
+          "space-md": "1rem",
+          "space-xl": "2.5rem",
+          "gutter-mobile": "1rem",
+          "space-lg": "1.5rem",
+          "space-sm": "0.5rem",
+          "space-xs": "0.25rem",
+          "margin-mobile": "1rem"
+        },
+        "fontFamily": {
+          "label-lg": [
+            "Inter"
+          ],
+          "display-lg": [
+            "Playfair Display"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "title-md": [
+            "Inter"
+          ],
+          "body-sm": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "label-sm": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "display-lg-mobile": [
+            "Playfair Display"
+          ],
+          "headline-sm": [
+            "Playfair Display"
+          ],
+          "body-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "48px",
+            {
+              "lineHeight": "56px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg-mobile": [
+            "26px",
+            {
+              "lineHeight": "34px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "title-md": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-md": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.03em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg-mobile": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-sm": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-primary-container z-50 flex flex-col justify-between py-6"><div class="flex flex-col"><div class="px-6 mb-8"><div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-secondary-fixed text-[24px]">all_inclusive</span><span class="font-headline-md text-headline-md text-on-primary tracking-wide">Muhurat</span></div><div class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed font-semibold pl-8">The Royal Knot</div><div class="font-body-sm text-body-sm text-on-primary-container mt-1 pl-8 opacity-80">Palace Wedding Operations</div></div><nav class="flex flex-col space-y-1" data-active-classes="bg-secondary/20 text-secondary-fixed border-l-4 border-secondary-fixed font-semibold pl-5"><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="enquiries" href="#"><span class="material-symbols-outlined text-[20px]">inbox</span><span>Enquiries</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="agreements" href="#"><span class="material-symbols-outlined text-[20px]">history_edu</span><span>Agreements</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="quotes" href="#"><span class="material-symbols-outlined text-[20px]">request_quote</span><span>Quotes</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="wedding-plan" href="#"><span class="material-symbols-outlined text-[20px]">event_seat</span><span>Wedding Plan</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="muhurat-timeline" href="#"><span class="material-symbols-outlined text-[20px]">schedule</span><span>Muhurat Timeline</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="settlement" href="#"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span><span>Settlement</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="season-review" href="#"><span class="material-symbols-outlined text-[20px]">bar_chart</span><span>Season Review</span></a></nav></div><div class="px-6"><div class="bg-primary p-4 rounded-lg flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-secondary-fixed uppercase">Heritage Network</span><span class="font-body-sm text-body-sm text-tertiary-fixed">Jaipur &amp; Udaipur</span></div><span class="material-symbols-outlined text-secondary-fixed text-[20px]">fort</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-gutter shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded-full text-secondary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">location_city</span><span>Jaipur &amp; Udaipur HQ</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs bg-secondary-container/30 px-space-sm py-1 rounded-full text-on-secondary-container font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[16px] text-secondary">sunny</span><span>Auspicious Muhurat: 19:42 IST</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden lg:block"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-60 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full pl-9 pr-space-md py-1.5 focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="Search royales, dates, folios..." type="text"/></div><button class="flex items-center gap-1.5 bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm px-space-sm py-1.5 rounded-lg transition-colors"><span class="material-symbols-outlined text-[16px]">add</span><span>Quick Entry</span></button><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Pooja Rathore</span><span class="font-label-sm text-label-sm text-secondary-fixed-variant leading-tight">Founder</span></div></div><a class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm ml-space-xs" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Sign out</span></a></div></header><main class="relative pt-16 w-full min-h-screen bg-surface"><div class="flex flex-col w-full">
+<div class="p-space-lg lg:p-margin flex flex-col gap-space-lg">
+<!-- Header Context & Legal Notice Bar -->
+<div class="flex flex-col gap-space-md">
+<!-- Auspicious Legal Ribbon -->
+<div class="bg-secondary-container/20 rounded-lg p-space-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm text-on-secondary-container">
+<span class="material-symbols-outlined text-[20px] text-secondary">verified_user</span>
+<span class="font-label-md text-label-md">Official Heritage Wedding Services Contract — Legally Binding Under Rajasthan Solemnization &amp; Event Governance</span>
+</div>
+<div class="flex items-center gap-space-xs self-end sm:self-auto text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">fingerprint</span>
+<span class="tracking-wider font-mono">HASH: SHA256-RAJ-884-2025</span>
+</div>
+</div>
+<!-- Title & Folio Details Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs text-secondary mb-1">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span class="font-label-sm text-label-sm tracking-widest uppercase">Folio #AGR-2025-884</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm">Palace Registry: Udaipur Div. IV</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Service Agreement &amp; Contract Execution</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Aarav Singhania &amp; Meera Kapoor — Royal Udaipur Multi-Estate Celebrations</p>
+</div>
+<!-- Contract State Preview Toggle -->
+<div class="flex items-center bg-surface-container-high p-1 rounded-full self-start md:self-auto">
+<button class="px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all text-on-surface bg-surface-container-lowest shadow-sm" id="toggle-pending-btn" onclick="setContractState('pending')">
+            Pending Execution
+          </button>
+<button class="px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all text-on-surface-variant hover:text-primary" id="toggle-signed-btn" onclick="setContractState('signed')">
+            Signed &amp; Verified State
+          </button>
+</div>
+</div>
+<!-- Execution Status Highlight Banner -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md flex flex-wrap items-center justify-between gap-space-md shadow-sm" id="status-banner">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 px-space-md py-1 rounded-full font-label-sm text-label-sm bg-secondary-container/40 text-on-secondary-container" id="status-badge">
+<span class="material-symbols-outlined text-[16px]">hourglass_top</span>
+<span id="status-badge-text">Pending Client Signoff</span>
+</div>
+<div class="h-4 w-px bg-surface-container-highest hidden sm:block"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Authentication Server</span>
+<span class="font-body-sm text-body-sm font-mono text-on-surface">E-Sign Certified via Muhurat Vault • IP: 103.21.58.12 (Jaipur HQ)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-surface-container-low hover:bg-surface-container text-primary font-label-sm text-label-sm px-space-md py-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[18px]">print</span>
+<span>Print Draft</span>
+</button>
+<button class="flex-1 sm:flex-initial flex items-center justify-center gap-2 bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm px-space-md py-2 rounded-lg transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download Signed PDF</span>
+<span class="text-tertiary-fixed text-[10px] bg-primary-container px-1.5 py-0.5 rounded">4.2 MB</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Contract & Signatory Split Columns -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column: Legal Agreement Document Frame (7 of 12 cols, ~60%) -->
+<div class="lg:col-span-7 flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Document Decorative Header Bar -->
+<div class="bg-primary p-space-md sm:p-space-lg flex items-center justify-between text-on-primary">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-secondary-fixed">
+<span class="material-symbols-outlined text-[28px]">shield_with_house</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed">The Royal Knot • Palace Registry</span>
+<span class="font-headline-sm text-headline-sm text-on-primary">Royal Heritage Wedding Agreement</span>
+</div>
+</div>
+<div class="text-right hidden sm:block">
+<span class="font-label-sm text-label-sm text-secondary-fixed block">Format AGR-2025-V3</span>
+<span class="font-body-sm text-body-sm text-primary-fixed opacity-90">Valid Until 15 Nov 2025</span>
+</div>
+</div>
+<!-- Scrollable Contract Content Area -->
+<div class="p-space-md sm:p-space-lg max-h-[780px] overflow-y-auto flex flex-col gap-space-lg text-on-surface">
+<!-- Package Intro Header -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-semibold">Tier One Mandate</span>
+<span class="bg-surface-container-lowest px-2 py-0.5 rounded text-[11px] font-mono text-on-surface-variant">DOC REF: RJ-UDR-2025-09</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary">Grand Rajputana Royal Package</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Multi-Estate Celebrations across Jagmandir Island Palace, The Oberoi Udaivilas, and Zenana Mahal Courtyard (Udaipur, Rajasthan).</p>
+</div>
+<!-- Financial Breakdown Ledger -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-primary">I. Retainer &amp; Financial Disbursements</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Currency: INR (₹)</span>
+</div>
+<div class="overflow-x-auto bg-surface-container-lowest rounded-lg">
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-2.5 px-3">Milestone / Deliverable</th>
+<th class="py-2.5 px-3">Scheduled Date</th>
+<th class="py-2.5 px-3">Status</th>
+<th class="py-2.5 px-3 text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low/40">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">Token Advance &amp; Royal Mandate Booking</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Locking dates &amp; Jagmandir reservation deposit</div>
+</td>
+<td class="py-3 px-3 font-mono text-body-sm">18 Aug 2025</td>
+<td class="py-3 px-3">
+<span class="bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">check</span> Received
+                      </span>
+</td>
+<td class="py-3 px-3 text-right font-semibold text-primary">₹3,50,000</td>
+</tr>
+<tr class="hover:bg-surface-container-low/40">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">Stage 2: Sangeet &amp; Decor Finalization</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Floral architecture &amp; palace light engineering approval</div>
+</td>
+<td class="py-3 px-3 font-mono text-body-sm">30 Oct 2025</td>
+<td class="py-3 px-3">
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">pending</span> Scheduled
+                      </span>
+</td>
+<td class="py-3 px-3 text-right font-semibold text-on-surface">₹7,50,000</td>
+</tr>
+<tr class="hover:bg-surface-container-low/40">
+<td class="py-3 px-3">
+<div class="font-semibold text-on-surface">Final Settlement &amp; Royal Dispatch</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Comprehensive vendor close-out &amp; concierge wrap</div>
+</td>
+<td class="py-3 px-3 font-mono text-body-sm">15 Nov 2025</td>
+<td class="py-3 px-3">
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">schedule</span> Due Close
+                      </span>
+</td>
+<td class="py-3 px-3 text-right font-semibold text-on-surface">₹7,50,000</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="bg-surface-container-low font-semibold">
+<td class="py-3 px-3 text-on-surface" colspan="3">
+                      Total Agency Fee (Inclusive of GST &amp; Luxury Heritage Surcharge)
+                    </td>
+<td class="py-3 px-3 text-right text-primary text-headline-sm font-headline-sm">
+                      ₹18,50,000
+                    </td>
+</tr>
+</tfoot>
+</table>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">INR Eighteen Lakh Fifty Thousand Only. Excludes actual palace venue rental disbursements paid directly to heritage trusts.</p>
+</div>
+<!-- Scope of Services & Key Deliverables -->
+<div class="flex flex-col gap-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-primary">II. Scope of Royal Services &amp; Heritage Escort</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px] mt-0.5">sunny</span>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Astrological Alignment</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tithi synchronisation, Vedic pandit curation, and auspicious muhurat window management.</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px] mt-0.5">villa</span>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">450 VIP Suite Allocations</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Bespoke luggage tagging, concierge check-in at Udaivilas, Leela Palace, and Fateh Prakash.</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px] mt-0.5">directions_car</span>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Royal Baraat Procession</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Government permissions for royal tuskers, bagpiper regiments, and vintage Rolls-Royce fleet.</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[22px] mt-0.5">restaurant_menu</span>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Curated Feasts Master-Plan</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mewari Royal Thali, Rampuri royal dawat, and signature mixology protocols for 1,200 attendees.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed Legal Clauses (Rich Text) -->
+<div class="flex flex-col gap-space-md text-body-md text-on-surface-variant">
+<h3 class="font-headline-sm text-headline-sm text-primary">III. Governance, Protocols &amp; Legal Clauses</h3>
+<div class="flex flex-col gap-1">
+<span class="font-semibold text-on-surface font-title-md text-title-md">Clause 1: Exclusivity &amp; Palace Protocol Compliance</span>
+<p>The Client acknowledges that all heritage properties (including Island Courtyards and Zenana Mahal) operate under the Rajasthan Heritage Monuments &amp; Solemnization Protection Framework. The Royal Knot acts as the sole designated architectural supervisor. High-decibel audio systems shall adhere strictly to 22:00 IST court orders, transitioning to acoustic instrumentation indoors.</p>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-semibold text-on-surface font-title-md text-title-md">Clause 2: Weather Contingency &amp; Lake Pichola Transfers</span>
+<p>In the event of unseasonal precipitation or lake wind warnings issued by the Udaipur Meteorological Directorate, water taxi ferries between Badi Pal Jetty and Jagmandir shall immediately switch to motorized heritage catamarans. Alternate banquet seating at the indoor Darbar Hall will activate automatically without penalty.</p>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-semibold text-on-surface font-title-md text-title-md">Clause 3: Cancellation, Force Majeure &amp; Auspicious Rescheduling</span>
+<p>Should unexpected administrative decrees or divine tithi delays require wedding postponement, the retainer fee shall be held in trust for up to twelve (12) calendar months, eligible for re-application upon identifying an alternate auspicious muhurat approved by the Royal Knot Jyotish Council.</p>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-semibold text-on-surface font-title-md text-title-md">Clause 4: Confidentiality &amp; High-Profile Privacy Charter</span>
+<p>Both parties enter a strict non-disclosure covenant preventing unauthorized social media transmissions, drone photography leakages, or guest roster distributions prior to the authorized official royal release.</p>
+</div>
+</div>
+<!-- Bottom Document Footer -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col sm:flex-row items-center justify-between text-on-surface-variant font-label-sm text-label-sm gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span>Certified under Digital Signature Act 2000 (India)</span>
+</div>
+<div class="font-mono text-[11px]">
+              DOCUMENT END • PAGE 1 OF 1 • MUTUAL CONSENT REQUIRED
+            </div>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Digital Signature & Affirmation (~40%) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Interactive Signature Execution Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md sm:p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">Affirmation Desk</span>
+<h3 class="font-headline-md text-headline-md text-primary">Digital Signature</h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">draw</span>
+</div>
+</div>
+<!-- Signatory Details Meta -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Primary Signatory:</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Aarav Singhania</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Signer Role:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Client &amp; Groom's Guardian</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Heritage Agency Escort:</span>
+<span class="font-body-sm text-body-sm text-on-surface">Pooja Rathore (Founder)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Execution Timestamp:</span>
+<span class="font-label-sm text-label-sm font-mono text-secondary font-semibold" id="execution-date-stamp">12 November 2025 • 17:42 IST</span>
+</div>
+</div>
+<!-- Digital Signature Box Canvas Container -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm text-on-surface font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">stylus</span>
+<span>Client Signature Stroke</span>
+</label>
+<button class="text-on-surface-variant hover:text-error font-label-sm text-label-sm flex items-center gap-1 transition-colors" onclick="clearSignature()">
+<span class="material-symbols-outlined text-[14px]">refresh</span>
+<span>Clear Canvas</span>
+</button>
+</div>
+<!-- Signature Interactive Canvas Area -->
+<div class="relative w-full h-44 rounded-lg bg-surface-container-low overflow-hidden flex items-center justify-center cursor-crosshair">
+<!-- Watermark Background -->
+<div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none select-none">
+<span class="font-display-lg text-[64px] text-primary">THE ROYAL KNOT</span>
+</div>
+<!-- Realistic Handwritten Royal Cursive Graphic -->
+<svg class="w-full h-full p-4 transition-opacity duration-300" fill="none" id="signature-path-svg" viewbox="0 0 400 140" xmlns="http://www.w3.org/2000/svg">
+<path d="M 45 95 C 60 50, 75 35, 90 40 C 98 44, 94 85, 90 92 C 86 98, 80 100, 78 85 C 85 70, 95 65, 110 75 C 120 83, 125 90, 135 80 C 145 70, 155 72, 160 85 C 165 92, 175 75, 185 78 C 195 82, 200 95, 215 75 C 228 58, 235 30, 240 25 C 243 22, 248 30, 242 55 C 235 85, 220 115, 210 110 C 205 107, 215 88, 225 82 C 240 75, 260 85, 275 80 C 290 75, 300 70, 315 85 C 330 92, 345 68, 360 70" stroke="#322C1D" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"></path>
+<path d="M 65 110 C 140 105, 260 112, 370 102" stroke="#795902" stroke-dasharray="3 3" stroke-linecap="round" stroke-width="1.8"></path>
+<text fill="#887175" font-family="Inter" font-size="10" letter-spacing="1" x="290" y="125">VERIFIED E-SEAL</text>
+</svg>
+<!-- Stylus Guide Hint -->
+<div class="absolute bottom-2 left-3 flex items-center gap-1 text-on-surface-variant opacity-60 text-[11px] font-mono pointer-events-none" id="canvas-hint">
+<span class="material-symbols-outlined text-[13px]">gesture</span>
+<span>Draw or stylus approved • High sensitivity</span>
+</div>
+</div>
+</div>
+<!-- Consent Affirmation Checkbox -->
+<label class="flex items-start gap-space-sm p-space-sm bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+<input checked="" class="mt-1 h-4 w-4 rounded text-primary focus:ring-secondary cursor-pointer" id="consent-check" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">
+              I have verified the terms, payment milestones (Total ₹18,50,000), cancellation limits, and agree to Rajasthani Heritage Ceremonial event protocols.
+            </span>
+</label>
+<!-- Sign / Action Button Group -->
+<div class="flex flex-col gap-space-xs">
+<button class="w-full py-3 px-space-md rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-space-sm transition-all shadow-md" id="sign-action-btn" onclick="executeSignatureAction()">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">draw</span>
+<span id="sign-btn-text">Execute Binding Signature</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<span class="text-center font-label-sm text-label-sm text-on-surface-variant">Timestamp &amp; IP address recorded upon submission.</span>
+</div>
+<!-- Signed Confirmation Module (Revealed when Signed State active) -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm" id="signed-meta-block">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+</div>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Signature Certified &amp; Stamped</span>
+</div>
+<span class="bg-secondary-container/30 text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full font-medium">Valid E-Contract</span>
+</div>
+<div class="flex flex-col gap-1 text-[12px] font-mono text-on-surface-variant bg-surface-container-lowest p-space-sm rounded">
+<div class="flex justify-between">
+<span>Cert Serial:</span>
+<span class="text-on-surface font-semibold">MH-RAJ-2025-0987-AX</span>
+</div>
+<div class="flex justify-between">
+<span>Signer Hash:</span>
+<span class="text-on-surface font-semibold">SHA256: 8f9b7c...3c12</span>
+</div>
+<div class="flex justify-between">
+<span>Rajasthan Node:</span>
+<span class="text-on-surface">Udaipur City Center (Zone 2)</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[15px]">lock</span>
+                Immutable Tamper-Evident Record
+              </span>
+<button class="font-label-sm text-label-sm text-primary hover:underline font-semibold">View Audit Trail</button>
+</div>
+</div>
+</div>
+<!-- Venue & Wedding Showcase Visual Widget -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="relative h-44 w-full">
+<img class="w-full h-full object-cover" data-alt="A grand royal Rajasthani palace courtyard with lighted torches, ornate carved jharokha arches, reflecting pools of Lake Pichola at twilight with golden festive illumination, capturing the regal aesthetic of Udaipur celebrations." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaI8dLs7M78Vx1HSbAsew_LcCOpx6W9_oCtFA3q9E4y5F_r2xTG3uoqsDknLuDK74f3ip-x93MT_RAsHjUCNy5hVn136_aVVHNEpcG4jN1IZKd6bKXZoSGqd6t83XRfmYDcP5PT7k8-u91ys4mZmT54s_gV9nbfZG615Do9AeMcAcCES6AzP4tOqz5AWf_lIH98FkFE7YmJacztbbfvQdGLSQciYLzyCZjymejh_w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/30 to-transparent flex items-end p-space-md">
+<div class="flex flex-col text-on-primary">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed">Host Venue</span>
+<span class="font-headline-sm text-headline-sm">Jagmandir Island Palace</span>
+<span class="font-body-sm text-body-sm opacity-90">Lake Pichola, Udaipur • Main Wedding Muhurat</span>
+</div>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">hotel_class</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">5-Star Heritage Protocol</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Full venue security &amp; private dock lockdown</span>
+</div>
+</div>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-container font-semibold flex items-center gap-0.5" href="#">
+<span>View Map</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let isContractSigned = false;
+
+  function setContractState(state) {
+    const pendingBtn = document.getElementById('toggle-pending-btn');
+    const signedBtn = document.getElementById('toggle-signed-btn');
+    const statusBadge = document.getElementById('status-badge');
+    const statusBadgeText = document.getElementById('status-badge-text');
+    const signBtn = document.getElementById('sign-action-btn');
+    const signBtnText = document.getElementById('sign-btn-text');
+    const signedBlock = document.getElementById('signed-meta-block');
+    const dateStamp = document.getElementById('execution-date-stamp');
+    const sigPath = document.getElementById('signature-path-svg');
+
+    if (state === 'signed') {
+      isContractSigned = true;
+      pendingBtn.className = "px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all text-on-surface-variant hover:text-primary";
+      signedBtn.className = "px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all text-on-surface bg-surface-container-lowest shadow-sm";
+      
+      statusBadge.className = "flex items-center gap-1.5 px-space-md py-1 rounded-full font-label-sm text-label-sm bg-secondary-container text-on-secondary-container";
+      statusBadge.innerHTML = '<span class="material-symbols-outlined text-[16px]">check_circle</span><span>Signed & Verified on 12 Nov 2025</span>';
+      
+      signBtn.className = "w-full py-3 px-space-md rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg flex items-center justify-center gap-space-sm cursor-not-allowed";
+      signBtnText.textContent = "Agreement Executed & Sealed";
+      signedBlock.classList.remove('opacity-50');
+      sigPath.style.opacity = '1';
+    } else {
+      isContractSigned = false;
+      signedBtn.className = "px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all text-on-surface-variant hover:text-primary";
+      pendingBtn.className = "px-space-md py-1.5 rounded-full font-label-md text-label-md transition-all text-on-surface bg-surface-container-lowest shadow-sm";
+      
+      statusBadge.className = "flex items-center gap-1.5 px-space-md py-1 rounded-full font-label-sm text-label-sm bg-secondary-container/40 text-on-secondary-container";
+      statusBadge.innerHTML = '<span class="material-symbols-outlined text-[16px]">hourglass_top</span><span id="status-badge-text">Pending Client Signoff</span>';
+      
+      signBtn.className = "w-full py-3 px-space-md rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-space-sm transition-all shadow-md";
+      signBtnText.textContent = "Execute Binding Signature";
+    }
+  }
+
+  function clearSignature() {
+    const sigPath = document.getElementById('signature-path-svg');
+    const canvasHint = document.getElementById('canvas-hint');
+    if (sigPath) {
+      sigPath.style.opacity = sigPath.style.opacity === '0' ? '1' : '0';
+      if (canvasHint) {
+        canvasHint.textContent = sigPath.style.opacity === '0' ? 'Canvas cleared. Draw or touch to sign.' : 'Draw or stylus approved • High sensitivity';
+      }
+    }
+  }
+
+  function executeSignatureAction() {
+    if (isContractSigned) return;
+    const consent = document.getElementById('consent-check');
+    if (!consent.checked) {
+      alert('Please confirm acceptance of Rajasthani Heritage ceremonial terms.');
+      return;
+    }
+    setContractState('signed');
+  }
+</script></main></div></body></html>
