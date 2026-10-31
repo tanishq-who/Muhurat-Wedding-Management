@@ -1,6 +1,10 @@
+import base64
 from datetime import date, timedelta
 from decimal import Decimal
+import io
 from unittest.mock import patch
+
+from PIL import Image
 
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
@@ -11,11 +15,15 @@ from django.utils import timezone
 from core import services
 from core.forms import ExtraChargeForm
 from core.models import (
+    Agreement,
     ClientPayment,
     ExtraCharge,
+    Lead,
     Quote,
     Task,
+    TimeLog,
     Vendor,
+    VendorCheckIn,
     VendorPayment,
     Wedding,
     WeddingVendor,
@@ -464,3 +472,570 @@ class SettlementViewsAndFormTestCase(TestCase):
         self.assertEqual(resp.status_code, 302)
         self.wedding.refresh_from_db()
         self.assertNotEqual(self.wedding.status, Wedding.Status.SETTLED)
+
+
+class Scene6SeasonReviewTestCase(TestCase):
+    def setUp(self):
+        from django.contrib.auth.models import Group
+        self.founder_group, _ = Group.objects.get_or_create(name="Founder")
+        self.founder_user = User.objects.create_user(username="founder_meera", password="password123")
+        self.founder_user.groups.add(self.founder_group)
+        self.regular_user = User.objects.create_user(username="regular_aditi", password="password123")
+        self.superuser = User.objects.create_superuser(username="admin", password="password123")
+
+        self.wedding = Wedding.objects.create(
+            couple_name="Kabir & Tara",
+            package="full",
+            start_date=date.today() + timedelta(days=20),
+            end_date=date.today() + timedelta(days=22),
+            guest_count=250,
+            budget=Decimal("2000000"),
+            package_price=Decimal("1500000"),
+            planner=self.regular_user,
+        )
+        self.vendor = Vendor.objects.create(name="Elite Sounds", category="DJ", rating=Decimal("4.5"))
+        self.wv = WeddingVendor.objects.create(
+            wedding=self.wedding,
+            vendor=self.vendor,
+            role="DJ",
+            agreed_amount=Decimal("80000"),
+            expected_arrival=timezone.now() - timedelta(hours=2),
+        )
+        # Check-in 5 minutes after expected arrival -> on-time!
+        VendorCheckIn.objects.create(
+            wedding_vendor=self.wv,
+            arrived_at=self.wv.expected_arrival + timedelta(minutes=5),
+            checked_in_by=self.regular_user,
+        )
+        # Approved extra charge
+        extra = services.add_extra_charge(
+            wedding=self.wedding,
+            wedding_vendor=self.wv,
+            description="Extra sound monitor",
+            quantity=Decimal("1"),
+            client_unit_price=Decimal("10000"),
+            vendor_unit_cost=Decimal("6000"),
+        )
+        services.approve_extra(extra)
+
+        # Time log: 10 hours at 1000/hr = 10000
+        TimeLog.objects.create(
+            wedding=self.wedding,
+            user=self.regular_user,
+            date=date.today(),
+            hours=Decimal("10"),
+            hourly_cost=Decimal("1000"),
+        )
+
+        # Client payment
+        ClientPayment.objects.create(
+            wedding=self.wedding,
+            kind="booking",
+            amount=Decimal("450000"),
+            due_date=date.today() - timedelta(days=5),
+            paid_on=date.today() - timedelta(days=5),
+        )
+        ClientPayment.objects.create(
+            wedding=self.wedding,
+            kind="advance",
+            amount=Decimal("600000"),
+            due_date=date.today() + timedelta(days=10),
+        )
+
+        # Vendor payment
+        VendorPayment.objects.create(
+            wedding_vendor=self.wv,
+            kind="advance",
+            amount=Decimal("40000"),
+            due_date=date.today() - timedelta(days=2),
+            paid_on=date.today() - timedelta(days=2),
+        )
+        VendorPayment.objects.create(
+            wedding_vendor=self.wv,
+            kind="balance",
+            amount=Decimal("46000"),
+            due_date=date.today() + timedelta(days=15),
+        )
+
+    def test_wedding_profit(self):
+        profit_dict = services.wedding_profit(self.wedding)
+        # revenue = package_price (1500000) + approved extras (10000) = 1510000
+        self.assertEqual(profit_dict["revenue"], Decimal("1510000"))
+        # vendor_cost = agreed (80000) + approved extras (6000) = 86000
+        self.assertEqual(profit_dict["vendor_cost"], Decimal("86000"))
+        # labour_cost = 10 * 1000 = 10000
+        self.assertEqual(profit_dict["labour_cost"], Decimal("10000"))
+        # profit = 1510000 - 86000 - 10000 = 1414000
+        self.assertEqual(profit_dict["profit"], Decimal("1414000"))
+        # margin = 1414000 / 1510000 * 100 = 93.6
+        self.assertAlmostEqual(profit_dict["margin"], 93.6, places=1)
+        # received = paid ClientPayment = 450000
+        self.assertEqual(profit_dict["received"], Decimal("450000"))
+        # low_margin = margin < 15 = False
+        self.assertFalse(profit_dict["low_margin"])
+        self.assertEqual(profit_dict["couple_name"], "Kabir & Tara")
+
+        # Revenue includes approved extras only: unapproved extras must NOT increase revenue or vendor cost
+        unapproved = services.add_extra_charge(
+            wedding=self.wedding,
+            wedding_vendor=self.wv,
+            description="Unapproved lighting extra",
+            quantity=Decimal("1"),
+            client_unit_price=Decimal("50000"),
+            vendor_unit_cost=Decimal("25000"),
+        )
+        profit_dict2 = services.wedding_profit(self.wedding)
+        self.assertEqual(profit_dict2["revenue"], Decimal("1510000"))
+        self.assertEqual(profit_dict2["vendor_cost"], Decimal("86000"))
+
+        # Labour cost counted: adding a time log increases labour cost and reduces profit
+        TimeLog.objects.create(
+            wedding=self.wedding,
+            user=self.regular_user,
+            date=date.today(),
+            hours=Decimal("5"),
+            hourly_cost=Decimal("2000"),
+        )
+        profit_dict3 = services.wedding_profit(self.wedding)
+        self.assertEqual(profit_dict3["labour_cost"], Decimal("20000"))
+        self.assertEqual(profit_dict3["profit"], Decimal("1404000"))
+
+        # low_margin flag: True when margin < 15, False when margin >= 15
+        self.assertFalse(profit_dict3["low_margin"])
+        w_low = Wedding.objects.create(
+            couple_name="Low Margin Couple",
+            package="essential",
+            start_date=date.today() + timedelta(days=30),
+            end_date=date.today() + timedelta(days=31),
+            guest_count=100,
+            budget=Decimal("500000"),
+            package_price=Decimal("100000"),
+        )
+        v_low = Vendor.objects.create(name="Expensive Decorator", category="decorator")
+        WeddingVendor.objects.create(
+            wedding=w_low,
+            vendor=v_low,
+            role="decorator",
+            agreed_amount=Decimal("90000"),
+        )
+        profit_low = services.wedding_profit(w_low)
+        self.assertEqual(profit_low["margin"], 10.0)
+        self.assertTrue(profit_low["low_margin"])
+
+    def test_season_summary(self):
+        # Create a second wedding with a loss
+        w_loss = Wedding.objects.create(
+            couple_name="Loss Couple",
+            package="essential",
+            start_date=date.today() + timedelta(days=40),
+            end_date=date.today() + timedelta(days=41),
+            guest_count=50,
+            budget=Decimal("200000"),
+            package_price=Decimal("50000"),
+        )
+        v_loss = Vendor.objects.create(name="High Cost Decorator", category="decorator")
+        WeddingVendor.objects.create(
+            wedding=w_loss,
+            vendor=v_loss,
+            role="decorator",
+            agreed_amount=Decimal("70000"),
+        )
+
+        summary = services.season_summary()
+        weddings, totals = summary
+        self.assertGreaterEqual(len(weddings), 2)
+
+        # Sorted by profit descending
+        profits = [w["profit"] for w in weddings]
+        self.assertEqual(profits, sorted(profits, reverse=True))
+
+        # Totals match aggregated values
+        self.assertEqual(totals["wedding_count"], len(weddings))
+        self.assertEqual(totals["total_revenue"], sum(w["revenue"] for w in weddings))
+        self.assertEqual(totals["total_cost"], sum(w["vendor_cost"] + w["labour_cost"] for w in weddings))
+        self.assertEqual(totals["total_profit"], sum(w["profit"] for w in weddings))
+        self.assertEqual(totals["loss_count"], sum(1 for w in weddings if w["profit"] < Decimal("0")))
+        self.assertEqual(totals["low_margin_count"], sum(1 for w in weddings if w["low_margin"]))
+        self.assertGreaterEqual(totals["loss_count"], 1)
+
+    def test_vendor_scorecard(self):
+        # self.vendor already has 1 booking that arrived 5 mins late (<= 10 mins) -> on-time
+        # Add 2nd booking that arrived 25 mins late (> 10 mins) -> late
+        wv2 = WeddingVendor.objects.create(
+            wedding=self.wedding,
+            vendor=self.vendor,
+            role="DJ Assistant",
+            agreed_amount=Decimal("20000"),
+            expected_arrival=timezone.now() - timedelta(hours=1),
+        )
+        VendorCheckIn.objects.create(
+            wedding_vendor=wv2,
+            arrived_at=wv2.expected_arrival + timedelta(minutes=25),
+            checked_in_by=self.regular_user,
+        )
+        # Add 3rd booking without check-in -> ignored in eligible count
+        WeddingVendor.objects.create(
+            wedding=self.wedding,
+            vendor=self.vendor,
+            role="DJ Backup",
+            agreed_amount=Decimal("10000"),
+            expected_arrival=timezone.now(),
+        )
+
+        # Create a second vendor who is 100% on time
+        v_punctual = Vendor.objects.create(name="Punctual Catering", category="caterer", rating=Decimal("4.8"))
+        wv_punctual = WeddingVendor.objects.create(
+            wedding=self.wedding,
+            vendor=v_punctual,
+            role="caterer",
+            agreed_amount=Decimal("60000"),
+            expected_arrival=timezone.now() - timedelta(hours=3),
+        )
+        VendorCheckIn.objects.create(
+            wedding_vendor=wv_punctual,
+            arrived_at=wv_punctual.expected_arrival - timedelta(minutes=5),
+            checked_in_by=self.regular_user,
+        )
+
+        scorecard = services.vendor_scorecard()
+        # Verify self.vendor: 1 on-time out of 2 eligible = 50.0%
+        v_entry = next(item for item in scorecard if item["vendor"] == self.vendor)
+        self.assertEqual(v_entry["bookings"], 3)
+        self.assertEqual(v_entry["on_time_rate"], 50.0)
+
+        # Verify v_punctual: 1 on-time out of 1 eligible = 100.0%
+        p_entry = next(item for item in scorecard if item["vendor"] == v_punctual)
+        self.assertEqual(p_entry["bookings"], 1)
+        self.assertEqual(p_entry["on_time_rate"], 100.0)
+
+        # Scorecard sorted by on_time_rate descending
+        rates = [item["on_time_rate"] for item in scorecard]
+        self.assertEqual(rates, sorted(rates, reverse=True))
+
+    def test_upcoming_dues(self):
+        # Add an overdue unpaid client payment
+        cp_overdue = ClientPayment.objects.create(
+            wedding=self.wedding,
+            kind="final",
+            amount=Decimal("50000"),
+            due_date=date.today() - timedelta(days=3),
+            paid_on=None,
+        )
+        # Add a distant unpaid client payment (> 30 days)
+        cp_distant = ClientPayment.objects.create(
+            wedding=self.wedding,
+            kind="extra",
+            amount=Decimal("30000"),
+            due_date=date.today() + timedelta(days=45),
+            paid_on=None,
+        )
+
+        dues = services.upcoming_dues(days=30)
+        collect_payments = [item["payment"] for item in dues["to_collect"]]
+
+        # 1. Paid payments are excluded
+        paid_client_payments = ClientPayment.objects.filter(wedding=self.wedding, paid_on__isnull=False)
+        for cp in paid_client_payments:
+            self.assertNotIn(cp, collect_payments)
+
+        # 2. Overdue payments are included and have overdue=True
+        self.assertIn(cp_overdue, collect_payments)
+        overdue_item = next(item for item in dues["to_collect"] if item["payment"] == cp_overdue)
+        self.assertTrue(overdue_item["overdue"])
+        self.assertLess(overdue_item["days"], 0)
+
+        # 3. Distant payments (> 30 days) are excluded
+        self.assertNotIn(cp_distant, collect_payments)
+
+        # 4. For vendor payments, paid payments are excluded
+        pay_payments = [item["payment"] for item in dues["to_pay"]]
+        paid_vendor_payments = VendorPayment.objects.filter(wedding_vendor=self.wv, paid_on__isnull=False)
+        for vp in paid_vendor_payments:
+            self.assertNotIn(vp, pay_payments)
+
+    def test_share_token(self):
+        # 1. Valid token works
+        token = services.share_token_for_season()
+        data = services.verify_share_token(token)
+        self.assertEqual(data["scope"], "season")
+
+        # 2. Tampered token raises ServiceError
+        tampered_token = token[:-4] + ("XXXX" if token[-4:] != "XXXX" else "YYYY")
+        with self.assertRaises(services.ServiceError):
+            services.verify_share_token(tampered_token)
+
+        # 3. Completely invalid token raises ServiceError
+        with self.assertRaises(services.ServiceError):
+            services.verify_share_token("invalid-token")
+
+    def test_season_views(self):
+        c = Client()
+        # 1. Anonymous -> 403 on season
+        resp = c.get(reverse("season"))
+        self.assertEqual(resp.status_code, 403)
+
+        # 2. Regular user (not founder) -> 403
+        c.force_login(self.regular_user)
+        resp = c.get(reverse("season"))
+        self.assertEqual(resp.status_code, 403)
+
+        # 3. Founder user -> 200 (mocking render)
+        c.force_login(self.founder_user)
+        with patch("core.views.render") as mock_render:
+            mock_render.return_value = HttpResponse("ok")
+            resp = c.get(reverse("season"))
+            self.assertEqual(resp.status_code, 200)
+            mock_render.assert_called_once()
+            args, kwargs = mock_render.call_args
+            self.assertEqual(args[1], "core/season.html")
+            context = args[2]
+            self.assertIn("weddings", context)
+            self.assertIn("totals", context)
+            self.assertIn("profit_data", context)
+            self.assertIn("vendors", context)
+            self.assertIn("dues", context)
+            self.assertIn("share_url", context)
+
+        # 4. season_csv -> returns text/csv
+        resp = c.get(reverse("season_csv"))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp["Content-Type"], "text/csv")
+        content = resp.content.decode()
+        self.assertIn("wedding,date,revenue,vendor_cost,labour_cost,profit,margin", content)
+
+        # 5. season_share -> no login required
+        c.logout()
+        token = services.share_token_for_season()
+        with patch("core.views.render") as mock_render:
+            mock_render.return_value = HttpResponse("shared_ok")
+            resp = c.get(reverse("season_share", kwargs={"token": token}))
+            self.assertEqual(resp.status_code, 200)
+            args, kwargs = mock_render.call_args
+            context = args[2]
+            self.assertNotIn("share_url", context)
+
+        # season_share with invalid token -> 403
+        resp = c.get(reverse("season_share", kwargs={"token": "bad-token"}))
+        self.assertEqual(resp.status_code, 403)
+
+        # 6. wedding_profit -> login required
+        profit_url = reverse("wedding_profit", kwargs={"wedding_id": self.wedding.id})
+        resp = c.get(profit_url)
+        self.assertEqual(resp.status_code, 302)
+
+        c.force_login(self.regular_user)
+        with patch("core.views.render") as mock_render:
+            mock_render.return_value = HttpResponse("profit_ok")
+            resp = c.get(profit_url)
+            self.assertEqual(resp.status_code, 200)
+            args, kwargs = mock_render.call_args
+            self.assertEqual(args[1], "core/wedding_profit.html")
+            context = args[2]
+            self.assertEqual(context["wedding"], self.wedding)
+            self.assertIn("profit", context)
+
+
+class Scene1DigitalAgreementTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="leadplanner", password="password123")
+        self.lead = Lead.objects.create(
+            couple_name="Rohan & Priya",
+            phone="9876543210",
+            email="rohan@example.com",
+            tentative_date=date.today() + timedelta(days=90),
+            guest_count=250,
+            theme="Royal Palace",
+            max_budget=Decimal("1500000"),
+            package="royal",
+            planner=self.user,
+        )
+        self.wedding = Wedding.objects.create(
+            lead=self.lead,
+            couple_name=self.lead.couple_name,
+            package="royal",
+            theme=self.lead.theme,
+            start_date=self.lead.tentative_date,
+            end_date=self.lead.tentative_date + timedelta(days=2),
+            guest_count=self.lead.guest_count,
+            budget=self.lead.max_budget,
+            package_price=Decimal("450000"),
+            planner=self.user,
+        )
+
+        img = Image.new("RGBA", (100, 40), (255, 255, 255, 0))
+        buf = io.BytesIO()
+        img.save(buf, format="PNG")
+        self.valid_sig = "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
+
+    def test_create_agreement(self):
+        agmt = services.create_agreement(self.lead)
+        self.assertIsNotNone(agmt.id)
+        self.assertEqual(agmt.lead, self.lead)
+        self.assertEqual(agmt.signer_name, self.lead.couple_name)
+        self.assertFalse(agmt.is_signed)
+        self.assertIsNone(agmt.signed_at)
+
+        agmt2 = services.create_agreement(self.lead)
+        self.assertEqual(agmt.id, agmt2.id)
+        self.assertEqual(self.lead.agreements.count(), 1)
+
+    def test_sign_agreement_validation(self):
+        agmt = services.create_agreement(self.lead)
+
+        with self.assertRaises(services.ServiceError):
+            services.sign_agreement(agmt, "", self.valid_sig)
+
+        with self.assertRaises(services.ServiceError):
+            services.sign_agreement(agmt, "Rohan", "data:image/jpeg;base64,1234")
+        with self.assertRaises(services.ServiceError):
+            services.sign_agreement(agmt, "Rohan", "not-a-data-url")
+
+        with self.assertRaises(services.ServiceError):
+            services.sign_agreement(agmt, "Rohan", "data:image/png;base64,???invalid-b64???")
+
+        # Reject non-PNG image data encoded in PNG data URL
+        jpeg_img = Image.new("RGB", (50, 50), (255, 0, 0))
+        jpeg_buf = io.BytesIO()
+        jpeg_img.save(jpeg_buf, format="JPEG")
+        jpeg_in_png = "data:image/png;base64," + base64.b64encode(jpeg_buf.getvalue()).decode("ascii")
+        with self.assertRaises(services.ServiceError):
+            services.sign_agreement(agmt, "Rohan", jpeg_in_png)
+
+        fake_large_payload = "data:image/png;base64," + base64.b64encode(b"0" * (1024 * 1024 + 10)).decode("ascii")
+        with self.assertRaises(services.ServiceError):
+            services.sign_agreement(agmt, "Rohan", fake_large_payload)
+
+        fake_corrupt = "data:image/png;base64," + base64.b64encode(b"this is not an image").decode("ascii")
+        with self.assertRaises(services.ServiceError):
+            services.sign_agreement(agmt, "Rohan", fake_corrupt)
+
+    def test_sign_agreement_success_and_prevent_double_sign(self):
+        agmt = services.create_agreement(self.lead)
+        signed = services.sign_agreement(agmt, "Rohan", self.valid_sig)
+
+        self.assertTrue(signed.is_signed)
+        self.assertIsNotNone(signed.signed_at)
+        self.assertEqual(signed.signer_name, "Rohan")
+        self.assertTrue(bool(signed.signature_image))
+        self.assertTrue(bool(signed.signed_pdf))
+
+        # Produces a PDF that starts with b"%PDF"
+        with signed.signed_pdf.open("rb") as f:
+            pdf_bytes = f.read()
+        self.assertTrue(pdf_bytes.startswith(b"%PDF"))
+
+        # Second signing raises ServiceError
+        with self.assertRaises(services.ServiceError):
+            services.sign_agreement(signed, "Rohan Again", self.valid_sig)
+
+    def test_advance_lead_stage(self):
+        lead = Lead.objects.create(
+            couple_name="Vikram & Neha",
+            phone="9123456780",
+            email="vikram@example.com",
+            tentative_date=date.today() + timedelta(days=120),
+            guest_count=150,
+            max_budget=Decimal("1000000"),
+            package="royal",
+            planner=self.user,
+        )
+        # Advance NEW -> MEETING -> AGREEMENT
+        services.advance_lead_stage(lead, Lead.Stage.MEETING)
+        services.advance_lead_stage(lead, Lead.Stage.AGREEMENT)
+        self.assertEqual(lead.stage, Lead.Stage.AGREEMENT)
+
+        # Confirming without a signed agreement fails (raises ServiceError)
+        with self.assertRaises(services.ServiceError):
+            services.advance_lead_stage(lead, Lead.Stage.CONFIRMED)
+        self.assertEqual(lead.stage, Lead.Stage.AGREEMENT)
+
+        # Create unsigned agreement -> still fails
+        agmt = services.create_agreement(lead)
+        with self.assertRaises(services.ServiceError):
+            services.advance_lead_stage(lead, Lead.Stage.CONFIRMED)
+        self.assertEqual(lead.stage, Lead.Stage.AGREEMENT)
+
+        # Sign the agreement
+        agmt = services.sign_agreement(agmt, "Vikram", self.valid_sig)
+        self.assertTrue(agmt.is_signed)
+
+        # Confirming with a signed agreement succeeds
+        services.advance_lead_stage(lead, Lead.Stage.CONFIRMED)
+        self.assertEqual(lead.stage, Lead.Stage.CONFIRMED)
+
+    def test_build_agreement_pdf(self):
+        agmt = services.create_agreement(self.lead)
+        pdf_bytes = services.build_agreement_pdf(agmt)
+        self.assertIsInstance(pdf_bytes, bytes)
+        self.assertTrue(pdf_bytes.startswith(b"%PDF"))
+
+    def test_build_invoice_pdf(self):
+        extra = services.add_extra_charge(
+            wedding=self.wedding,
+            wedding_vendor=None,
+            description="Fireworks Display",
+            quantity=1,
+            client_unit_price=Decimal("25000"),
+            vendor_unit_cost=Decimal("15000"),
+        )
+        services.approve_extra(extra)
+
+        pdf_bytes = services.build_invoice_pdf(self.wedding)
+        self.assertIsInstance(pdf_bytes, bytes)
+        self.assertTrue(pdf_bytes.startswith(b"%PDF"))
+
+    def test_agreement_views(self):
+        c = Client()
+        resp = c.get(reverse("agreement", kwargs={"id": self.lead.id}))
+        self.assertEqual(resp.status_code, 302)
+
+        c.force_login(self.user)
+
+        with patch("core.views.render") as mock_render:
+            mock_render.return_value = HttpResponse("ok")
+            resp = c.get(reverse("agreement", kwargs={"id": self.lead.id}))
+            self.assertEqual(resp.status_code, 200)
+            args, kwargs = mock_render.call_args
+            self.assertEqual(args[1], "core/agreement.html")
+            context = args[2]
+            self.assertEqual(context["lead"], self.lead)
+            self.assertIsNotNone(context["agreement"])
+
+        agmt = self.lead.agreements.first()
+
+        resp = c.get(reverse("agreement_pdf", kwargs={"id": agmt.id}))
+        self.assertEqual(resp.status_code, 404)
+
+        resp = c.post(
+            reverse("agreement_sign", kwargs={"id": agmt.id}),
+            data={"signer_name": "", "signature": "invalid"},
+        )
+        self.assertEqual(resp.status_code, 400)
+        self.assertFalse(resp.json()["ok"])
+
+        resp = c.post(
+            reverse("agreement_sign", kwargs={"id": agmt.id}),
+            data={"signer_name": "Rohan", "signature": self.valid_sig},
+        )
+        self.assertEqual(resp.status_code, 200)
+        json_data = resp.json()
+        self.assertTrue(json_data["ok"])
+        self.assertIn("pdf_url", json_data)
+
+        resp = c.get(reverse("agreement_pdf", kwargs={"id": agmt.id}))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp["Content-Type"], "application/pdf")
+        self.assertTrue(resp.content.startswith(b"%PDF"))
+
+        resp = c.get(reverse("invoice_pdf", kwargs={"id": self.wedding.id}))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp["Content-Type"], "application/pdf")
+        self.assertTrue(resp.content.startswith(b"%PDF"))
+
+        resp = c.get(reverse("agreement_whatsapp", kwargs={"id": self.lead.id}))
+        self.assertEqual(resp.status_code, 302)
+        redirect_url = resp.url
+        self.assertTrue(redirect_url.startswith("https://wa.me/919876543210?text="))
+        self.assertIn("/leads/" + str(self.lead.id) + "/agreement/", redirect_url)
+
+
