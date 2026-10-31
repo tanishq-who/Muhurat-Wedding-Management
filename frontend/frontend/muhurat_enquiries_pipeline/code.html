@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "error-container": "#ffdad6",
+          "on-tertiary-fixed": "#201b0e",
+          "surface-bright": "#fcf9f8",
+          "on-primary-fixed-variant": "#81233f",
+          "on-error-container": "#93000a",
+          "inverse-surface": "#303030",
+          "surface": "#fcf9f8",
+          "on-secondary-fixed": "#261a00",
+          "primary": "#5d0325",
+          "primary-fixed-dim": "#ffb1c0",
+          "secondary": "#795902",
+          "on-tertiary": "#ffffff",
+          "surface-container-highest": "#e4e2e1",
+          "primary-fixed": "#ffd9df",
+          "error": "#ba1a1a",
+          "inverse-on-surface": "#f3f0f0",
+          "on-secondary-fixed-variant": "#5b4300",
+          "secondary-container": "#fdd275",
+          "tertiary": "#322c1d",
+          "on-background": "#1b1c1c",
+          "on-primary-fixed": "#3f0016",
+          "on-surface": "#1b1c1c",
+          "surface-tint": "#a03b56",
+          "secondary-fixed-dim": "#ebc166",
+          "inverse-primary": "#ffb1c0",
+          "surface-variant": "#e4e2e1",
+          "on-secondary": "#ffffff",
+          "tertiary-fixed": "#ece1cb",
+          "surface-container-lowest": "#ffffff",
+          "surface-dim": "#dcd9d9",
+          "outline": "#887175",
+          "on-primary-container": "#ff8ca5",
+          "tertiary-fixed-dim": "#d0c5b0",
+          "surface-container-low": "#f6f3f2",
+          "on-tertiary-fixed-variant": "#4d4636",
+          "surface-container": "#f0eded",
+          "tertiary-container": "#484232",
+          "on-tertiary-container": "#b8ae9a",
+          "primary-container": "#7b1e3a",
+          "surface-container-high": "#eae7e7",
+          "outline-variant": "#dbc0c3",
+          "secondary-fixed": "#ffdf9e",
+          "on-surface-variant": "#554245",
+          "on-primary": "#ffffff",
+          "background": "#fcf9f8",
+          "on-secondary-container": "#775800",
+          "on-error": "#ffffff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "margin": "2rem",
+          "gutter": "1.5rem",
+          "space-md": "1rem",
+          "space-xl": "2.5rem",
+          "gutter-mobile": "1rem",
+          "space-lg": "1.5rem",
+          "space-sm": "0.5rem",
+          "space-xs": "0.25rem",
+          "margin-mobile": "1rem"
+        },
+        "fontFamily": {
+          "label-lg": [
+            "Inter"
+          ],
+          "display-lg": [
+            "Playfair Display"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "title-md": [
+            "Inter"
+          ],
+          "body-sm": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "label-sm": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "display-lg-mobile": [
+            "Playfair Display"
+          ],
+          "headline-sm": [
+            "Playfair Display"
+          ],
+          "body-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "48px",
+            {
+              "lineHeight": "56px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg-mobile": [
+            "26px",
+            {
+              "lineHeight": "34px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "title-md": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-md": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.03em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg-mobile": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-sm": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-primary-container z-50 flex flex-col justify-between py-6"><div class="flex flex-col"><div class="px-6 mb-8"><div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-secondary-fixed text-[24px]">all_inclusive</span><span class="font-headline-md text-headline-md text-on-primary tracking-wide">Muhurat</span></div><div class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed font-semibold pl-8">The Royal Knot</div><div class="font-body-sm text-body-sm text-on-primary-container mt-1 pl-8 opacity-80">Palace Wedding Operations</div></div><nav class="flex flex-col space-y-1" data-active-classes="bg-secondary/20 text-secondary-fixed border-l-4 border-secondary-fixed font-semibold pl-5"><a aria-current="page" class="flex items-center gap-3 px-6 py-3 transition-colors bg-secondary/20 text-secondary-fixed border-l-4 border-secondary-fixed font-semibold pl-5" data-path="enquiries" href="#"><span class="material-symbols-outlined text-[20px]">inbox</span><span>Enquiries</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="agreements" href="#"><span class="material-symbols-outlined text-[20px]">history_edu</span><span>Agreements</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="quotes" href="#"><span class="material-symbols-outlined text-[20px]">request_quote</span><span>Quotes</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="wedding-plan" href="#"><span class="material-symbols-outlined text-[20px]">event_seat</span><span>Wedding Plan</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="muhurat-timeline" href="#"><span class="material-symbols-outlined text-[20px]">schedule</span><span>Muhurat Timeline</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="settlement" href="#"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span><span>Settlement</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="season-review" href="#"><span class="material-symbols-outlined text-[20px]">bar_chart</span><span>Season Review</span></a></nav></div><div class="px-6"><div class="bg-primary p-4 rounded-lg flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-secondary-fixed uppercase">Heritage Network</span><span class="font-body-sm text-body-sm text-tertiary-fixed">Jaipur &amp; Udaipur</span></div><span class="material-symbols-outlined text-secondary-fixed text-[20px]">fort</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-gutter shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded-full text-secondary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">location_city</span><span>Jaipur &amp; Udaipur HQ</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs bg-secondary-container/30 px-space-sm py-1 rounded-full text-on-secondary-container font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[16px] text-secondary">sunny</span><span>Auspicious Muhurat: 19:42 IST</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden lg:block"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-60 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full pl-9 pr-space-md py-1.5 focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="Search royales, dates, folios..." type="text"/></div><button class="flex items-center gap-1.5 bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm px-space-sm py-1.5 rounded-lg transition-colors"><span class="material-symbols-outlined text-[16px]">add</span><span>Quick Entry</span></button><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Pooja Rathore</span><span class="font-label-sm text-label-sm text-secondary-fixed-variant leading-tight">Founder</span></div></div><a class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm ml-space-xs" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Sign out</span></a></div></header><main class="relative pt-16 w-full min-h-screen bg-surface"><div class="flex flex-col w-full">
+<!-- Dynamic Top Banner / Atmospheric Texture -->
+<div class="px-gutter py-space-lg flex flex-col gap-space-lg">
+<!-- Title and Action Bar -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs text-secondary mb-1">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest font-semibold">Client Intake &amp; Astrological Folios</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Enquiries</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+          Manage royal client inquiries, astrological dates, and consultation pipelines across Jaipur and Udaipur heritage estates.
+        </p>
+</div>
+<!-- Action Group -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="flex items-center gap-2 bg-primary-container text-on-primary hover:bg-primary font-label-lg text-label-lg px-space-md py-2.5 rounded-lg shadow-sm transition-all transform active:scale-95" id="toggle-drawer-btn">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">add_circle</span>
+<span class="tracking-wide">+ Add Enquiry</span>
+</button>
+<button class="flex items-center gap-2 bg-surface-container-low text-on-surface hover:bg-surface-container font-label-lg text-label-lg px-space-md py-2.5 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[18px] text-secondary">file_download</span>
+<span>Export Folios</span>
+</button>
+</div>
+</div>
+<!-- Executive Stat Strip & Vedic Astrological Highlight -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Active Inquiries</span>
+<span class="font-headline-md text-headline-md text-primary font-bold mt-1">28</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium mt-0.5">+4 received this week</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">folder_shared</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Pipeline Valuation</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold mt-1">₹38.4 Cr</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium mt-0.5">Avg ₹2.7 Cr / celebration</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">payments</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Upcoming Muhurats</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold mt-1">14 Bookings</span>
+<span class="font-label-sm text-label-sm text-primary font-medium mt-0.5">High astrological affinity</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">bedtime</span>
+</div>
+</div>
+<!-- Astrological Signal Card -->
+<div class="bg-primary text-on-primary p-space-md rounded-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm tracking-wider uppercase text-secondary-fixed font-semibold">Tithi Intelligence</span>
+<span class="material-symbols-outlined text-secondary-fixed text-[18px]">flare</span>
+</div>
+<div class="my-1">
+<span class="font-body-md text-body-md text-surface-container-lowest font-medium block">Pushya Nakshatra Approaching</span>
+<span class="font-body-sm text-body-sm text-tertiary-fixed-dim">Peak demand for Lake Pichola venues</span>
+</div>
+<div class="font-label-sm text-label-sm text-secondary-fixed flex items-center gap-1">
+<span>Surge Factor: 1.25x</span>
+</div>
+</div>
+</div>
+<!-- Filter Strip -->
+<div class="flex items-center justify-between flex-wrap gap-space-sm pt-space-xs">
+<div class="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
+<button class="bg-primary text-on-primary px-space-sm py-1 rounded-full font-label-md text-label-md shadow-sm">All Venues (28)</button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-space-sm py-1 rounded-full font-label-md text-label-md transition-colors">Jaipur Palaces (14)</button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-space-sm py-1 rounded-full font-label-md text-label-md transition-colors">Udaipur Lakefront (9)</button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-space-sm py-1 rounded-full font-label-md text-label-md transition-colors">High Value &gt; ₹3 Cr (8)</button>
+<button class="bg-surface-container-low hover:bg-surface-container text-on-surface px-space-sm py-1 rounded-full font-label-md text-label-md transition-colors">Astrology Verified (18)</button>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">swap_vert</span>
+<span>Sorted by Auspicious Date Priority</span>
+</div>
+</div>
+<!-- Kanban / Pipeline Board -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md items-start overflow-x-auto pb-6">
+<!-- COLUMN 1: NEW -->
+<div class="flex flex-col bg-surface-container-low/70 rounded-xl p-space-sm">
+<!-- Col Header -->
+<div class="flex items-center justify-between px-space-sm py-space-xs mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">New Inquiries</h2>
+</div>
+<span class="bg-surface-container text-secondary font-label-md text-label-md px-2 py-0.5 rounded-full">6</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-2">
+<span class="bg-[#EAF5F0] text-[#2E7D5B] font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+<span>Astrology Matched</span>
+</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">2h ago</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-snug">Aarav Singhania &amp; Meera Kapoor</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">castle</span>
+<span>Royal Udaipur Palace (City Palace)</span>
+</p>
+</div>
+<!-- Visual Snapshot -->
+<div class="relative w-full h-24 rounded overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Lavish Indian palace courtyard in Udaipur during twilight with glowing chandeliers, regal marigold floral carpets, candlelit marble fountains, and majestic Mewar royal architecture in deep amber and maroon colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPxNyrPr_1ZBml6SoH_fhjk97mq4mO9G2hF9F9ss0FZ_EDJtFG29v1Q8iB74l6GW8UwQDi-BhmIPjhHJnmmP4IPykw2bSodJ1dFTHSR5WO6Oc2880mqQSPS5wbDNE8r8gmpsGezkkDECMWEX65G1-Bufo9wleXlKlTFnC4__PiiupW98rWg_YVFiqx4sMWfVQ-_r-2cuStri4LbTlWSVzWnDM0FmJSfrGbaOVLhnA"/>
+<div class="absolute bottom-1 right-1 bg-surface/90 text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded">
+                Lake Pichola
+              </div>
+</div>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-2 rounded">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Date</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">14 Dec 2025</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Est. Guests</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">450 Guests</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Budget Folio</span>
+<span class="font-title-md text-title-md text-primary font-bold">₹2.8 Cr</span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span>View</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-2">
+<span class="bg-[#FEF8E7] text-[#E0A100] font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">arrow_back_ios_new</span>
+<span>Fresh Inquiry</span>
+</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">5h ago</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-snug">Devansh Rathore &amp; Ananya Birla</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">domain</span>
+<span>Rambagh Heritage Extravaganza (Jaipur)</span>
+</p>
+</div>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-2 rounded">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Date</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">18 Jan 2026</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Est. Guests</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">600 Guests</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Budget Folio</span>
+<span class="font-title-md text-title-md text-primary font-bold">₹4.2 Cr</span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span>View</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- COLUMN 2: MEETING -->
+<div class="flex flex-col bg-surface-container-low/70 rounded-xl p-space-sm">
+<!-- Col Header -->
+<div class="flex items-center justify-between px-space-sm py-space-xs mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Consultation</h2>
+</div>
+<span class="bg-surface-container text-secondary font-label-md text-label-md px-2 py-0.5 rounded-full">8</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-2">
+<span class="bg-secondary/10 text-secondary font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">calendar_month</span>
+<span>Meeting Set</span>
+</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Tomorrow</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-snug">Vikramaditya Oberoi &amp; Tara Sen</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">location_city</span>
+<span>Jagmandir Island Royal Twilight</span>
+</p>
+</div>
+<!-- Meeting Callout -->
+<div class="bg-surface-container-low border-l-2 border-secondary p-2 rounded-r flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px] mt-0.5">event</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Tasting &amp; Decor Consult</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tomorrow at 3:00 PM IST (Jaipur HQ)</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-2 rounded">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Date</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">28 Nov 2025</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Est. Guests</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">350 Guests</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Budget Folio</span>
+<span class="font-title-md text-title-md text-primary font-bold">₹3.5 Cr</span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span>Notes</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-2">
+<span class="bg-[#FEF8E7] text-[#E0A100] font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">video_call</span>
+<span>Virtual Consult</span>
+</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Thu 11 AM</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-snug">Kabir Joshi &amp; Radhika Merchant</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">festival</span>
+<span>Samode Palace Rajasthani Regalia</span>
+</p>
+</div>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-2 rounded">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Date</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">04 Feb 2026</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Est. Guests</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">500 Guests</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Budget Folio</span>
+<span class="font-title-md text-title-md text-primary font-bold">₹2.1 Cr</span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span>Prep</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- COLUMN 3: AGREEMENT -->
+<div class="flex flex-col bg-surface-container-low/70 rounded-xl p-space-sm">
+<!-- Col Header -->
+<div class="flex items-center justify-between px-space-sm py-space-xs mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Agreement</h2>
+</div>
+<span class="bg-surface-container text-secondary font-label-md text-label-md px-2 py-0.5 rounded-full">9</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Card 5 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-2">
+<span class="bg-primary/10 text-primary font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">send</span>
+<span>Contract Sent</span>
+</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">v2.1 Draft</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-snug">Rohan Chawla &amp; Samaira Khaitan</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">fort</span>
+<span>Umaid Bhawan Royal Grandeur</span>
+</p>
+</div>
+<!-- Visual Snapshot -->
+<div class="relative w-full h-24 rounded overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Majestic golden sandstone royal palace facade of Umaid Bhawan during sunset, lit with warm lanterns and dramatic architectural uplighting with regal crimson banners" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVcJc5Bgm2asN69M4IDcDeENDthAvdMaQzaBp7eaMUy0Patts4GYdjWSEPFKVLBPsUpPvkBD8d72r4ruAqE7xcPQRozsCHn1IZQ8ruBlLVZLgjUYvPQ4qKnFPor-HoEOAX2Ij-rdpCobEZYwpXYiDJouBgWHS6SDoXDwzhugLUZgGP4f5sqKNrU2FFD2z-N_sHgTH7EW7Dic18ue52XYvHuUO061cbisQxVPhDuDU"/>
+<div class="absolute bottom-1 right-1 bg-surface/90 text-on-surface font-label-sm text-label-sm px-1.5 py-0.5 rounded">
+                Jodhpur Heritage
+              </div>
+</div>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-2 rounded">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Date</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">12 Nov 2025</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Est. Guests</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">750 Guests</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Budget Folio</span>
+<span class="font-title-md text-title-md text-primary font-bold">₹5.5 Cr</span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span>Contract</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-2">
+<span class="bg-[#FEF8E7] text-[#E0A100] font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">pending_actions</span>
+<span>Reviewing Terms</span>
+</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Day 3</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-snug">Arjun Varma &amp; Diya Parekh</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">villa</span>
+<span>Fairmont Amber Fort Vista</span>
+</p>
+</div>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-2 rounded">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Date</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">22 Dec 2025</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Est. Guests</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">400 Guests</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Budget Folio</span>
+<span class="font-title-md text-title-md text-primary font-bold">₹1.9 Cr</span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span>Revise</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- COLUMN 4: CONFIRMED -->
+<div class="flex flex-col bg-surface-container-low/70 rounded-xl p-space-sm">
+<!-- Col Header -->
+<div class="flex items-center justify-between px-space-sm py-space-xs mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#2E7D5B]"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Confirmed</h2>
+</div>
+<span class="bg-surface-container text-secondary font-label-md text-label-md px-2 py-0.5 rounded-full">5</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Card 7 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-2">
+<span class="bg-[#EAF5F0] text-[#2E7D5B] font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">check_circle</span>
+<span>Advance Received</span>
+</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Locked</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-snug">Yashvardhan Kothari &amp; Sanjana Seth</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">castle</span>
+<span>Leela Palace Lake Pichola Extravaganza</span>
+</p>
+</div>
+<div class="bg-[#EAF5F0]/60 p-2 rounded flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-[#2E7D5B] font-medium">Token Advance: ₹1.5 Cr</span>
+<span class="material-symbols-outlined text-[#2E7D5B] text-[16px]">verified_user</span>
+</div>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-2 rounded">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Date</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">08 Nov 2025</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Est. Guests</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">650 Guests</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Budget Folio</span>
+<span class="font-title-md text-title-md text-primary font-bold">₹6.0 Cr</span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span>Manage</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Card 8 -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-2">
+<span class="bg-[#EAF5F0] text-[#2E7D5B] font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">handshake</span>
+<span>Confirmed</span>
+</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Folio #842</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-snug">Nikhil Goenka &amp; Tanvi Mehta</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">festival</span>
+<span>Chomu Palace Regal Sangeet</span>
+</p>
+</div>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low p-2 rounded">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Date</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">19 Jan 2026</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Est. Guests</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">420 Guests</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Budget Folio</span>
+<span class="font-title-md text-title-md text-primary font-bold">₹2.4 Cr</span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-label-sm text-label-sm">
+<span>Manage</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Slide-over Modal / Drawer for 'Add Enquiry' -->
+<div aria-labelledby="slide-over-title" aria-modal="true" class="fixed inset-0 z-50 overflow-hidden hidden" id="add-enquiry-drawer" role="dialog">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-inverse-surface/40 backdrop-blur-sm transition-opacity opacity-0 duration-300" id="drawer-backdrop"></div>
+<div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+<div class="pointer-events-auto w-screen max-w-xl transform translate-x-full transition-transform duration-300 ease-in-out bg-surface-container-lowest shadow-2xl flex flex-col justify-between" id="drawer-panel">
+<!-- Drawer Header -->
+<div class="p-space-lg bg-surface-container-low flex flex-col gap-1 relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">history_edu</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Royal Knot Registry</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors" id="close-drawer-btn">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary mt-1" id="slide-over-title">Add Royal Enquiry</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Register couple folio, verify muhurat auspiciousness, and set budget parameters.</p>
+</div>
+<!-- Drawer Body / Form -->
+<div class="p-space-lg flex-1 overflow-y-auto flex flex-col gap-space-md">
+<!-- Couple Names -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface font-medium flex items-center justify-between">
+<span>Couple Names</span>
+<span class="text-secondary font-label-sm text-label-sm">Primary Folio</span>
+</label>
+<input class="bg-surface-container-low px-space-sm py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all" placeholder="Groom &amp; Bride Names" type="text" value="Aditya Mehta &amp; Rhea Shah"/>
+</div>
+<!-- Contact Coordinates (2 cols) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface font-medium">Contact Phone</label>
+<div class="flex bg-surface-container-low rounded-lg overflow-hidden">
+<span class="px-space-sm py-2 bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center">+91</span>
+<input class="bg-transparent px-space-sm py-2 font-body-md text-body-md text-on-surface w-full focus:outline-none" type="tel" value="98290 41189"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface font-medium">Email Address</label>
+<input class="bg-surface-container-low px-space-sm py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none" type="email" value="aditya.mehta@example.com"/>
+</div>
+</div>
+<!-- Wedding Date & Astrological Inline Validation -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface font-medium flex items-center justify-between">
+<span>Target Wedding Date</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">star</span>
+</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low px-space-sm py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none" type="date" value="2025-11-28"/>
+</div>
+<!-- Real-time Astrological Shubh Muhurat Badge / Validation -->
+<div class="mt-1.5 p-space-sm rounded-lg bg-[#FEF8E7] flex items-start gap-2">
+<span class="material-symbols-outlined text-[#E0A100] text-[18px] mt-0.5">wb_sunny</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-[#795902] font-semibold">High Auspicious Shubh Muhurat (Rohini Nakshatra)</span>
+<span class="font-body-sm text-body-sm text-[#795902]/90">
+                  Selected date coincides with major planetary alignment. High demand anticipated: +₹25L venue premium applies for lakeside venues.
+                </span>
+</div>
+</div>
+</div>
+<!-- Guest Count & Preferred Theme -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface font-medium">Guest Roster Size</label>
+<input class="bg-surface-container-low px-space-sm py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none" type="number" value="500"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface font-medium">Preferred Venue Theme</label>
+<select class="bg-surface-container-low px-space-sm py-2 rounded-lg font-body-md text-body-md text-on-surface focus:outline-none">
+<option selected="">Royal Udaipur Palace</option>
+<option>Jaipur Heritage Fort</option>
+<option>Lakefront Pichola Royal Sunset</option>
+<option>Desert Dunes Regal Royal</option>
+</select>
+</div>
+</div>
+<!-- Budget Slider & Numeric Preview -->
+<div class="flex flex-col gap-2 bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Estimated Budget Folio</label>
+<span class="font-title-md text-title-md text-primary font-bold" id="budget-display">₹ 2,50,00,000 (2.5 Cr)</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer" id="budget-range" max="80000000" min="10000000" step="5000000" type="range" value="25000000"/>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>₹1.0 Cr</span>
+<span>₹4.5 Cr</span>
+<span>₹8.0 Cr+</span>
+</div>
+</div>
+<!-- Astrological Muhurat Check Toggle -->
+<div class="flex items-center justify-between p-space-sm bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">bedtime</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Vedic Astrologer Verification</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Dispatch Kundalis to Agency Pandit Ji</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2.5 rounded-lg font-label-lg text-label-lg text-on-surface hover:bg-surface-container transition-colors" id="cancel-drawer-btn">
+            Cancel
+          </button>
+<button class="px-space-lg py-2.5 rounded-lg font-label-lg text-label-lg bg-primary-container text-on-primary hover:bg-primary shadow-sm transition-all flex items-center gap-2" id="save-enquiry-btn">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">save</span>
+<span>Save Enquiry to Pipeline</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Script for Modal Drawer Toggle & Budget Slider Dynamics -->
+<script>
+    (function() {
+      const drawer = document.getElementById('add-enquiry-drawer');
+      const backdrop = document.getElementById('drawer-backdrop');
+      const panel = document.getElementById('drawer-panel');
+      const toggleBtn = document.getElementById('toggle-drawer-btn');
+      const closeBtn = document.getElementById('close-drawer-btn');
+      const cancelBtn = document.getElementById('cancel-drawer-btn');
+      const saveBtn = document.getElementById('save-enquiry-btn');
+      const budgetRange = document.getElementById('budget-range');
+      const budgetDisplay = document.getElementById('budget-display');
+
+      function openDrawer() {
+        drawer.classList.remove('hidden');
+        setTimeout(() => {
+          backdrop.classList.remove('opacity-0');
+          backdrop.classList.add('opacity-100');
+          panel.classList.remove('translate-x-full');
+          panel.classList.add('translate-x-0');
+        }, 10);
+      }
+
+      function closeDrawer() {
+        backdrop.classList.remove('opacity-100');
+        backdrop.classList.add('opacity-0');
+        panel.classList.remove('translate-x-0');
+        panel.classList.add('translate-x-full');
+        setTimeout(() => {
+          drawer.classList.add('hidden');
+        }, 300);
+      }
+
+      if (toggleBtn) toggleBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      if (cancelBtn) cancelBtn.addEventListener('click', closeDrawer);
+      if (backdrop) backdrop.addEventListener('click', closeDrawer);
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          saveBtn.innerText = 'Enquiry Registered...';
+          setTimeout(() => {
+            closeDrawer();
+            saveBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-secondary-fixed">save</span><span>Save Enquiry to Pipeline</span>';
+          }, 600);
+        });
+      }
+
+      if (budgetRange && budgetDisplay) {
+        budgetRange.addEventListener('input', (e) => {
+          const val = Number(e.target.value);
+          const crVal = (val / 10000000).toFixed(1);
+          budgetDisplay.textContent = `₹ ${val.toLocaleString('en-IN')} (${crVal} Cr)`;
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

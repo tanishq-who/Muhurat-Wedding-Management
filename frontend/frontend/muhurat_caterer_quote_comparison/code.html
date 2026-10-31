@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "error-container": "#ffdad6",
+          "on-tertiary-fixed": "#201b0e",
+          "surface-bright": "#fcf9f8",
+          "on-primary-fixed-variant": "#81233f",
+          "on-error-container": "#93000a",
+          "inverse-surface": "#303030",
+          "surface": "#fcf9f8",
+          "on-secondary-fixed": "#261a00",
+          "primary": "#5d0325",
+          "primary-fixed-dim": "#ffb1c0",
+          "secondary": "#795902",
+          "on-tertiary": "#ffffff",
+          "surface-container-highest": "#e4e2e1",
+          "primary-fixed": "#ffd9df",
+          "error": "#ba1a1a",
+          "inverse-on-surface": "#f3f0f0",
+          "on-secondary-fixed-variant": "#5b4300",
+          "secondary-container": "#fdd275",
+          "tertiary": "#322c1d",
+          "on-background": "#1b1c1c",
+          "on-primary-fixed": "#3f0016",
+          "on-surface": "#1b1c1c",
+          "surface-tint": "#a03b56",
+          "secondary-fixed-dim": "#ebc166",
+          "inverse-primary": "#ffb1c0",
+          "surface-variant": "#e4e2e1",
+          "on-secondary": "#ffffff",
+          "tertiary-fixed": "#ece1cb",
+          "surface-container-lowest": "#ffffff",
+          "surface-dim": "#dcd9d9",
+          "outline": "#887175",
+          "on-primary-container": "#ff8ca5",
+          "tertiary-fixed-dim": "#d0c5b0",
+          "surface-container-low": "#f6f3f2",
+          "on-tertiary-fixed-variant": "#4d4636",
+          "surface-container": "#f0eded",
+          "tertiary-container": "#484232",
+          "on-tertiary-container": "#b8ae9a",
+          "primary-container": "#7b1e3a",
+          "surface-container-high": "#eae7e7",
+          "outline-variant": "#dbc0c3",
+          "secondary-fixed": "#ffdf9e",
+          "on-surface-variant": "#554245",
+          "on-primary": "#ffffff",
+          "background": "#fcf9f8",
+          "on-secondary-container": "#775800",
+          "on-error": "#ffffff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "margin": "2rem",
+          "gutter": "1.5rem",
+          "space-md": "1rem",
+          "space-xl": "2.5rem",
+          "gutter-mobile": "1rem",
+          "space-lg": "1.5rem",
+          "space-sm": "0.5rem",
+          "space-xs": "0.25rem",
+          "margin-mobile": "1rem"
+        },
+        "fontFamily": {
+          "label-lg": [
+            "Inter"
+          ],
+          "display-lg": [
+            "Playfair Display"
+          ],
+          "headline-lg-mobile": [
+            "Playfair Display"
+          ],
+          "title-md": [
+            "Inter"
+          ],
+          "body-sm": [
+            "Inter"
+          ],
+          "headline-md": [
+            "Playfair Display"
+          ],
+          "headline-lg": [
+            "Playfair Display"
+          ],
+          "label-md": [
+            "Inter"
+          ],
+          "label-sm": [
+            "Inter"
+          ],
+          "body-lg": [
+            "Inter"
+          ],
+          "display-lg-mobile": [
+            "Playfair Display"
+          ],
+          "headline-sm": [
+            "Playfair Display"
+          ],
+          "body-md": [
+            "Inter"
+          ]
+        },
+        "fontSize": {
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "display-lg": [
+            "48px",
+            {
+              "lineHeight": "56px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg-mobile": [
+            "26px",
+            {
+              "lineHeight": "34px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "title-md": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-md": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.03em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg-mobile": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-sm": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-primary-container z-50 flex flex-col justify-between py-6"><div class="flex flex-col"><div class="px-6 mb-8"><div class="flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-secondary-fixed text-[24px]">all_inclusive</span><span class="font-headline-md text-headline-md text-on-primary tracking-wide">Muhurat</span></div><div class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed font-semibold pl-8">The Royal Knot</div><div class="font-body-sm text-body-sm text-on-primary-container mt-1 pl-8 opacity-80">Palace Wedding Operations</div></div><nav class="flex flex-col space-y-1" data-active-classes="bg-secondary/20 text-secondary-fixed border-l-4 border-secondary-fixed font-semibold pl-5"><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="enquiries" href="#"><span class="material-symbols-outlined text-[20px]">inbox</span><span>Enquiries</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="agreements" href="#"><span class="material-symbols-outlined text-[20px]">history_edu</span><span>Agreements</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="quotes" href="#"><span class="material-symbols-outlined text-[20px]">request_quote</span><span>Quotes</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="wedding-plan" href="#"><span class="material-symbols-outlined text-[20px]">event_seat</span><span>Wedding Plan</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="muhurat-timeline" href="#"><span class="material-symbols-outlined text-[20px]">schedule</span><span>Muhurat Timeline</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="settlement" href="#"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span><span>Settlement</span></a><a class="flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-tertiary-fixed hover:bg-primary hover:text-on-primary transition-colors border-l-4 border-transparent" data-path="season-review" href="#"><span class="material-symbols-outlined text-[20px]">bar_chart</span><span>Season Review</span></a></nav></div><div class="px-6"><div class="bg-primary p-4 rounded-lg flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-secondary-fixed uppercase">Heritage Network</span><span class="font-body-sm text-body-sm text-tertiary-fixed">Jaipur &amp; Udaipur</span></div><span class="material-symbols-outlined text-secondary-fixed text-[20px]">fort</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md z-40 flex items-center justify-between px-gutter shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded-full text-secondary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">location_city</span><span>Jaipur &amp; Udaipur HQ</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs bg-secondary-container/30 px-space-sm py-1 rounded-full text-on-secondary-container font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[16px] text-secondary">sunny</span><span>Auspicious Muhurat: 19:42 IST</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden lg:block"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span><input class="w-60 bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-full pl-9 pr-space-md py-1.5 focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="Search royales, dates, folios..." type="text"/></div><button class="flex items-center gap-1.5 bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm px-space-sm py-1.5 rounded-lg transition-colors"><span class="material-symbols-outlined text-[16px]">add</span><span>Quick Entry</span></button><div class="h-6 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Pooja Rathore</span><span class="font-label-sm text-label-sm text-secondary-fixed-variant leading-tight">Founder</span></div></div><a class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm ml-space-xs" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Sign out</span></a></div></header><main class="relative pt-16 w-full min-h-screen bg-surface"><div class="flex flex-col w-full">
+<!-- Interactive State Tracker & Sidebar Stylist Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Highlight "Quotes" in app shell sidebar
+      const quoteLinks = document.querySelectorAll('aside nav a[data-path="quotes"]');
+      quoteLinks.forEach(link => {
+        link.className = "flex items-center gap-3 px-6 py-3 font-label-lg text-label-lg text-secondary-fixed bg-secondary/20 transition-colors border-l-4 border-secondary-fixed font-semibold pl-5";
+      });
+    });
+
+    function setViewState(mode) {
+      const btnComparing = document.getElementById("tab-comparing");
+      const btnDecided = document.getElementById("tab-decided");
+      const winnerNotice = document.getElementById("winner-banner");
+      const colRajwada = document.getElementById("col-rajwada");
+      const colShahi = document.getElementById("col-shahi");
+      const colMehfil = document.getElementById("col-mehfil");
+      
+      const badgeRajwada = document.getElementById("badge-rajwada-winner");
+      const badgeShahiClosed = document.getElementById("badge-shahi-closed");
+      const badgeMehfilClosed = document.getElementById("badge-mehfil-closed");
+
+      const ctaRajwada = document.getElementById("cta-rajwada");
+      const ctaShahi = document.getElementById("cta-shahi");
+      const ctaMehfil = document.getElementById("cta-mehfil");
+
+      if (mode === 'decided') {
+        // Tab Pills Styling
+        btnComparing.classList.remove("bg-primary-container", "text-on-primary", "shadow-sm");
+        btnComparing.classList.add("text-on-surface-variant", "hover:text-primary");
+        btnDecided.classList.add("bg-primary-container", "text-on-primary", "shadow-sm");
+        btnDecided.classList.remove("text-on-surface-variant", "hover:text-primary");
+
+        // Banner reveal
+        winnerNotice.classList.remove("hidden");
+
+        // Column Highlights & Dimming
+        colRajwada.classList.add("ring-2", "ring-secondary", "bg-surface-container-lowest", "scale-[1.01]", "shadow-xl");
+        badgeRajwada.classList.remove("hidden");
+        badgeRajwada.classList.add("flex");
+
+        colShahi.classList.add("opacity-50", "filter", "grayscale-[30%]");
+        badgeShahiClosed.classList.remove("hidden");
+        badgeShahiClosed.classList.add("flex");
+
+        colMehfil.classList.add("opacity-50", "filter", "grayscale-[30%]");
+        badgeMehfilClosed.classList.remove("hidden");
+        badgeMehfilClosed.classList.add("flex");
+
+        // CTA alterations
+        ctaRajwada.innerHTML = `<span class="material-symbols-outlined text-[18px]">verified</span> Contract Awarded &amp; Locked`;
+        ctaRajwada.className = "w-full py-3 px-4 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-2 cursor-default shadow-md";
+
+        ctaShahi.innerHTML = `<span class="material-symbols-outlined text-[18px]">lock</span> Bid Closed`;
+        ctaShahi.disabled = true;
+        ctaShahi.className = "w-full py-3 px-4 rounded-lg bg-surface-container-highest text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-1 cursor-not-allowed";
+
+        ctaMehfil.innerHTML = `<span class="material-symbols-outlined text-[18px]">lock</span> Bid Closed`;
+        ctaMehfil.disabled = true;
+        ctaMehfil.className = "w-full py-3 px-4 rounded-lg bg-surface-container-highest text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-1 cursor-not-allowed";
+
+      } else {
+        // Tab Pills Styling
+        btnDecided.classList.remove("bg-primary-container", "text-on-primary", "shadow-sm");
+        btnDecided.classList.add("text-on-surface-variant", "hover:text-primary");
+        btnComparing.classList.add("bg-primary-container", "text-on-primary", "shadow-sm");
+        btnComparing.classList.remove("text-on-surface-variant", "hover:text-primary");
+
+        // Banner hide
+        winnerNotice.classList.add("hidden");
+
+        // Reset columns
+        colRajwada.classList.remove("ring-2", "ring-secondary", "scale-[1.01]", "shadow-xl");
+        badgeRajwada.classList.add("hidden");
+        badgeRajwada.classList.remove("flex");
+
+        colShahi.classList.remove("opacity-50", "filter", "grayscale-[30%]");
+        badgeShahiClosed.classList.add("hidden");
+        badgeShahiClosed.classList.remove("flex");
+
+        colMehfil.classList.remove("opacity-50", "filter", "grayscale-[30%]");
+        badgeMehfilClosed.classList.add("hidden");
+        badgeMehfilClosed.classList.remove("flex");
+
+        // Reset CTAs
+        ctaRajwada.innerHTML = `<span>Select Winner</span> <span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
+        ctaRajwada.className = "w-full py-3 px-4 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1 transition-all shadow-sm";
+
+        ctaShahi.innerHTML = `<span>Select Winner</span> <span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
+        ctaShahi.disabled = false;
+        ctaShahi.className = "w-full py-3 px-4 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1 transition-all shadow-sm";
+
+        ctaMehfil.innerHTML = `<span>Select Winner</span> <span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
+        ctaMehfil.disabled = false;
+        ctaMehfil.className = "w-full py-3 px-4 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1 transition-all shadow-sm";
+      }
+    }
+  </script>
+<!-- Canvas Padding Wrapper -->
+<div class="px-margin py-8 flex flex-col gap-6">
+<!-- Section 1: Header & Operational Context -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-6 pb-2">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 font-label-sm text-label-sm tracking-wider uppercase text-secondary">
+<span class="material-symbols-outlined text-[18px]">restaurant_menu</span>
+<span>Banqueting &amp; Culinary RFP Dossier</span>
+<span class="text-outline-variant">•</span>
+<span class="text-on-surface-variant font-medium">Folio: #QUO-2025-412</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+          Caterer Quote Comparison
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span>Kabir Joshi &amp; Radhika Merchant</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>400 Guests</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Mewar Banquet &amp; Lake Terrace • Rajputana &amp; Global Gastronomy</span>
+</p>
+<!-- Meta badges -->
+<div class="flex flex-wrap items-center gap-2 pt-2">
+<span class="inline-flex items-center gap-1.5 bg-surface-container px-3 py-1 rounded-full font-label-sm text-label-sm text-on-surface font-medium">
+<span class="material-symbols-outlined text-[15px] text-secondary">groups</span>
+            400 Pax Confirmed
+          </span>
+<span class="inline-flex items-center gap-1.5 bg-secondary-container/40 px-3 py-1 rounded-full font-label-sm text-label-sm text-on-secondary-container font-semibold">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified_user</span>
+            Dietary: Royal Pure Veg &amp; Marwari Delicacies
+          </span>
+<span class="inline-flex items-center gap-1.5 bg-surface-container-high px-3 py-1 rounded-full font-label-sm text-label-sm text-primary font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            Status: Active Vendor Bidding
+          </span>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">event</span>
+            Dec 14–16, 2025
+          </span>
+</div>
+</div>
+<!-- Header Action Controls & Dual State Switcher -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 self-start xl:self-end">
+<!-- Interactive Mode Toggle -->
+<div class="flex items-center bg-surface-container-high p-1 rounded-xl shadow-inner">
+<button class="px-3.5 py-1.5 rounded-lg font-label-sm text-label-sm font-semibold transition-all bg-primary-container text-on-primary shadow-sm flex items-center gap-1.5" id="tab-comparing" onclick="setViewState('comparing')">
+<span class="material-symbols-outlined text-[16px]">compare_arrows</span>
+<span>Comparing (3 Active Quotes)</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-lg font-label-sm text-label-sm font-semibold transition-all text-on-surface-variant hover:text-primary flex items-center gap-1.5" id="tab-decided" onclick="setViewState('decided')">
+<span class="material-symbols-outlined text-[16px]">emoji_events</span>
+<span>Decided (Winner Selected)</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-sm text-label-sm shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[16px] text-primary">picture_as_pdf</span>
+<span>Export PDF</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-sm text-label-sm shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span>Add Vendor Quote</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Winner Announcement Banner (Visible in Decided state) -->
+<div class="hidden transition-all bg-gradient-to-r from-secondary-container via-surface-container-lowest to-secondary-container/40 p-5 rounded-xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4" id="winner-banner">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-full bg-secondary flex items-center justify-center text-on-secondary shadow-md shrink-0">
+<span class="material-symbols-outlined text-[24px]">workspace_premium</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Rajwada Caterers Selected as Official Banqueting Partner</span>
+<span class="bg-secondary text-on-secondary font-label-sm text-label-sm font-semibold px-2.5 py-0.5 rounded-full">Winner Locked</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Client sign-off completed by Mr. Joshi. ₹2,95,000 token payment queued for settlement against Folio #QUO-2025-412.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<button class="px-3.5 py-2 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-secondary font-label-sm text-label-sm font-semibold shadow-sm transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">history_edu</span>
+          Generate Agreement
+        </button>
+<button class="px-3 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm transition-colors" onclick="setViewState('comparing')">
+          Reopen Bids
+        </button>
+</div>
+</div>
+<!-- Section 2: Key Metrics Cards (Executive Summary) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-surface-container-low rounded-full pointer-events-none opacity-40"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Allocated Cap</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">₹3,200 <span class="font-body-sm text-body-sm text-on-surface-variant">/ pax</span></span>
+</div>
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-lg text-[22px]">account_balance_wallet</span>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Total Budget Ceiling</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">₹12,80,000</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-secondary-fixed/30 rounded-full pointer-events-none"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Average RFP Bid</span>
+<span class="font-headline-md text-headline-md text-on-surface mt-1">₹3,175 <span class="font-body-sm text-body-sm text-on-surface-variant">/ plate</span></span>
+</div>
+<span class="material-symbols-outlined text-secondary bg-secondary-fixed p-2 rounded-lg text-[22px]">analytics</span>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Aggregated Average</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">₹12,70,000 Total</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-surface-container-low rounded-full pointer-events-none opacity-40"></div>
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Best Value Spread</span>
+<span class="font-headline-md text-headline-md text-secondary mt-1">₹90,000 <span class="font-label-sm text-label-sm font-medium text-secondary-fixed-variant">Savings Cap</span></span>
+</div>
+<span class="material-symbols-outlined text-secondary bg-secondary-container p-2 rounded-lg text-[22px]">savings</span>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+            Rajwada Caterers
+          </span>
+<span class="font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full font-semibold">7.03% Under Cap</span>
+</div>
+</div>
+</div>
+<!-- Section 3: Visual Culinary Ambience Gallery -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+<div class="relative rounded-xl overflow-hidden shadow-sm h-36 group">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Lavish Rajasthani royal wedding thali and buffet presentation with brass urli bowls, fresh marigold flowers, silver cutlery, set against carved sandstone arches in Udaipur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3eiRqcatQQTzabpRu7eI5WgNrYWJPVBW7P_HW0yjCVe1YqXsZdzVZlcpDTrl_M_wlFCxjsxCe_qQw5L0E7VxjT8TCGepliSLIq-XLGxIoTq1lUL4e84RycCgPNcjNXtnx4Edncu4ecRVBm3mcraV5KkAj_Sd9KNcyJJ1R3y_x1beq2-rNb1_ZZMY5qrGEoEd_vSC4tZLxEqMStdm_Rb_MDtgayHEBd6CrA0zWZWg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent flex flex-col justify-end p-4">
+<span class="font-label-sm text-label-sm text-secondary-fixed uppercase tracking-wider font-semibold">Heritage Tasting</span>
+<h4 class="font-headline-sm text-headline-sm text-on-primary">Traditional Marwari Thali Feast</h4>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden shadow-sm h-36 group">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Evening outdoor live royal grill counter with charcoal rotisserie skewers, artisanal flatbreads, and aromatic smoke bathed in warm golden palace courtyard fairy lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGjZTwOs8cESxxURKuy0INySxbcvAEDHazw3JLCeGVFR6AJyB51yxxK1ZHCqlwO1P9CWJNEyoQ8BUqBkrNfVXvhhIwEH-fjuw9Cf35IY6uNUJ5eCv_ATQaBYWajr2FgxETH0AaG_78EcmIqLG4VWUZQLePreMqBK70mrwhZ-gnlG4B2X8LkXNuRA6efZDJ70eptEAcyX1ej9kPUcACiiM0RGTv-DgR6mnaFNOu8Es"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent flex flex-col justify-end p-4">
+<span class="font-label-sm text-label-sm text-secondary-fixed uppercase tracking-wider font-semibold">Live Stations</span>
+<h4 class="font-headline-sm text-headline-sm text-on-primary">Four Thematic Interactive Grills</h4>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden shadow-sm h-36 group">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Artisanal Indian wedding dessert station with saffron infused jalebis, pistachio garnished rabdi in clay pots, and delicate gold leaf decorated halwa under ambient warm banquet lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrmYtsrNQOPeHWixKdt-Zf1P5zp7zijoMylQVc7eFwqKg3DW_QfY_W089xJzGMvbA2Q0fE7ZF8H368c8UFeFa0qKXjbV3xOtvuy3fKNavPw1IluuQSZ89GDV5pDFC7C4qgFrK1EluOsyLCSs64yF_1SkdBzlWz7X8YZJcjFtmbm2kQLQrj-3u71OcYc4is-Wuq4Hj-GEm37XUF2R0w2c2DQnBAi0of_EoiUo1mLHk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent flex flex-col justify-end p-4">
+<span class="font-label-sm text-label-sm text-secondary-fixed uppercase tracking-wider font-semibold">Mithai &amp; Patisserie</span>
+<h4 class="font-headline-sm text-headline-sm text-on-primary">Royal Sweets &amp; Modern Confections</h4>
+</div>
+</div>
+</div>
+<!-- Section 4: Deep Comparative Matrix (Horizontal Scrolling Safe) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Table Header & Controls Bar -->
+<div class="px-6 py-4 bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">table_chart_view</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Detailed Quotation Breakdown</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">(400 Guests Standardized Base)</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">verified</span>
+            All taxes &amp; logistics inclusive
+          </span>
+</div>
+</div>
+<!-- The Multi-Column Scroll View -->
+<div class="overflow-x-auto w-full">
+<div class="min-w-[960px] grid grid-cols-4">
+<!-- Column 0: Category & Item Labels -->
+<div class="flex flex-col bg-surface-container-low/50">
+<!-- Col Header -->
+<div class="h-36 p-5 flex flex-col justify-end">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Evaluation Criteria</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1">Culinary Modules</span>
+</div>
+<!-- Row 1: Starters -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-lowest/70">
+<span class="font-label-md text-label-md text-on-surface font-semibold">1. Starters &amp; Canapés</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">8 Veg / 4 Live Charcoal Grills</span>
+<span class="font-label-sm text-label-sm text-secondary mt-1">Pre-function Terrace</span>
+</div>
+<!-- Row 2: Main Course -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/30">
+<span class="font-label-md text-label-md text-on-surface font-semibold">2. Royal Main Course</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">14 Entrees, 4 Dal &amp; Biryani, Artisanal Breads</span>
+<span class="font-label-sm text-label-sm text-secondary mt-1">Mewar Grand Banquet</span>
+</div>
+<!-- Row 3: Live Counters -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-lowest/70">
+<span class="font-label-md text-label-md text-on-surface font-semibold">3. Thematic Live Stations</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">4 Fully Styled Culinary Experience Counters</span>
+<span class="font-label-sm text-label-sm text-secondary mt-1">Courtyard Jharokha Zone</span>
+</div>
+<!-- Row 4: Desserts -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/30">
+<span class="font-label-md text-label-md text-on-surface font-semibold">4. Desserts &amp; Mithai</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">6 Artisanal &amp; Warm Rajasthani Sweets</span>
+<span class="font-label-sm text-label-sm text-secondary mt-1">Halwai Master Stations</span>
+</div>
+<!-- Row 5: Staffing -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-lowest/70">
+<span class="font-label-md text-label-md text-on-surface font-semibold">5. Staffing &amp; Butler Brigade</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">45 Trained Stewards, 6 Station Chefs</span>
+<span class="font-label-sm text-label-sm text-secondary mt-1">Guest Attendant Ratio 1:9</span>
+</div>
+<!-- Row 6: Logistics & Hygiene -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/30">
+<span class="font-label-md text-label-md text-on-surface font-semibold">6. Eco-Logistics &amp; Kitchen Cleanliness</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">HACCP, Solid Waste Audit, Kitchen Clearance</span>
+<span class="font-label-sm text-label-sm text-secondary mt-1">Palace Green Protocol</span>
+</div>
+<!-- Summary Totals Section -->
+<div class="h-44 p-4 flex flex-col justify-center bg-surface-container-high/40">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Financial Summary</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1">Net Cost / Pax</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Inclusive of 18% Banqueting GST</span>
+</div>
+<!-- Action Area Blank -->
+<div class="h-24 p-4 flex items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant italic">Operational Decision</span>
+</div>
+</div>
+<!-- Column 1: Rajwada Caterers (Recommended / Winner) -->
+<div class="flex flex-col transition-all duration-300 relative bg-surface-container-lowest" id="col-rajwada">
+<!-- Header Card -->
+<div class="h-36 p-5 flex flex-col justify-between bg-surface-container-low/20">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Rajwada Caterers</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Heritage Rajasthani &amp; Continental • Udaipur</span>
+</div>
+<!-- Shimmering winner badge (revealed in Decided state) -->
+<div class="hidden items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold shadow-sm" id="badge-rajwada-winner">
+<span class="material-symbols-outlined text-[15px]">trophy</span>
+<span>Winner Selected</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm bg-secondary-fixed/50 px-2 py-0.5 rounded text-on-secondary-fixed font-semibold">
+<span class="material-symbols-outlined text-[14px] text-secondary">star</span>
+                  4.9 Rating (120 weddings)
+                </span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">FSSAI Top Tier</span>
+</div>
+</div>
+<!-- Starters -->
+<div class="h-28 p-4 flex flex-col justify-center">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹2,60,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Dal Baati Bites, Truffle Paneer Tikka, Dahi Gujiya, Smoked Makki Kabab
+              </p>
+</div>
+<!-- Main Course -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/20">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹4,80,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Ker Sangri, Gatta Curry, Paneer Lababdar, Mewari Pulao, Missi Roti &amp; Naan
+              </p>
+</div>
+<!-- Live Counters -->
+<div class="h-28 p-4 flex flex-col justify-center">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹1,80,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Live Jalebi &amp; Rabdi, Khasta Chaat Trolley, Woodfired Neapolitan Pizza, Taco Bar
+              </p>
+</div>
+<!-- Desserts -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/20">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹1,10,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Moong Dal Halwa (Desi Ghee), Malpua Rabdi, Chenna Rasmalai
+              </p>
+</div>
+<!-- Staffing -->
+<div class="h-28 p-4 flex flex-col justify-center">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹90,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Rajasthani Turbaned Stewards &amp; Dedicated Silver Service Supervisors
+              </p>
+</div>
+<!-- Logistics -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/20">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹60,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Green Protocol Compliant, Zero-Waste Certified Audit Included
+              </p>
+</div>
+<!-- Grand Totals -->
+<div class="h-44 p-4 flex flex-col justify-center bg-surface-container-low/40">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Subtotal + GST:</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">₹11,80,000</span>
+</div>
+<div class="mt-2 pt-2 flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md text-primary font-bold">₹2,950</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/ pax</span>
+</div>
+<div class="mt-2">
+<span class="inline-flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed px-2.5 py-1 rounded-full font-label-sm text-label-sm font-bold shadow-sm">
+<span class="material-symbols-outlined text-[14px]">local_offer</span>
+                  Lowest Price / Best Value
+                </span>
+</div>
+</div>
+<!-- Action CTA -->
+<div class="h-24 p-4 flex items-center justify-center">
+<button class="w-full py-3 px-4 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1 transition-all shadow-sm" id="cta-rajwada" onclick="setViewState('decided')">
+<span>Select Winner</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Column 2: Shahi Rasoi -->
+<div class="flex flex-col transition-all duration-300 relative bg-surface-container-lowest" id="col-shahi">
+<!-- Header Card -->
+<div class="h-36 p-5 flex flex-col justify-between bg-surface-container-low/20">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Shahi Rasoi</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Royal Mughlai &amp; Modern Fusion • Jaipur</span>
+</div>
+<!-- Closed badge in Decided state -->
+<div class="hidden items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm" id="badge-shahi-closed">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>Closed</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm bg-surface-container px-2 py-0.5 rounded text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[14px] text-secondary">star</span>
+                  4.8 Rating (95 weddings)
+                </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">FSSAI Certified</span>
+</div>
+</div>
+<!-- Starters -->
+<div class="h-28 p-4 flex flex-col justify-center">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹2,90,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Veg Galouti Kebab, Smoked Saffron Paneer, Avocado Bhel, Crispy Lotus Stem
+              </p>
+</div>
+<!-- Main Course -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/20">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹5,10,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Shahi Dum Paneer, Mewari Khata Kadhi, Awadhi Veg Biryani, Chur Chur Naan
+              </p>
+</div>
+<!-- Live Counters -->
+<div class="h-28 p-4 flex flex-col justify-center">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹2,10,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Amritsari Stuffed Kulcha, Liquid Nitrogen Kulfi, Artisanal Dim Sum, Teppanyaki
+              </p>
+</div>
+<!-- Desserts -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/20">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹1,30,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Hyderabadi Shahi Tukda, Kesar Phirni in Earthenware, Rose Falooda
+              </p>
+</div>
+<!-- Staffing -->
+<div class="h-28 p-4 flex flex-col justify-center">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹1,05,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Formal Royal Bandhgala Uniform Crew &amp; Master Beverage Servers
+              </p>
+</div>
+<!-- Logistics -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/20">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹75,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Eco-Friendly Wet Waste Shredder, HACCP Grade Kitchen Sanitization
+              </p>
+</div>
+<!-- Grand Totals -->
+<div class="h-44 p-4 flex flex-col justify-center bg-surface-container-low/40">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Subtotal + GST:</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">₹13,20,000</span>
+</div>
+<div class="mt-2 pt-2 flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">₹3,300</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/ pax</span>
+</div>
+<div class="mt-2">
+<span class="inline-flex items-center gap-1 bg-surface-container text-on-surface-variant px-2.5 py-1 rounded-full font-label-sm text-label-sm font-medium">
+                  + ₹350 / plate vs Lowest
+                </span>
+</div>
+</div>
+<!-- Action CTA -->
+<div class="h-24 p-4 flex items-center justify-center">
+<button class="w-full py-3 px-4 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1 transition-all shadow-sm" id="cta-shahi" onclick="setViewState('decided')">
+<span>Select Winner</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Column 3: Mehfil Foods -->
+<div class="flex flex-col transition-all duration-300 relative bg-surface-container-lowest" id="col-mehfil">
+<!-- Header Card -->
+<div class="h-36 p-5 flex flex-col justify-between bg-surface-container-low/20">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Mehfil Foods</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Bespoke Banquets &amp; Molecular • Delhi</span>
+</div>
+<!-- Closed badge in Decided state -->
+<div class="hidden items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm" id="badge-mehfil-closed">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>Closed</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm bg-surface-container px-2 py-0.5 rounded text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[14px] text-secondary">star</span>
+                  4.7 Rating (80 weddings)
+                </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Luxury Accredited</span>
+</div>
+</div>
+<!-- Starters -->
+<div class="h-28 p-4 flex flex-col justify-center">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹3,10,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Artisanal Truffle Dim Sum, Gold Leaf Coated Paneer, Molecular Sev Puri Bar
+              </p>
+</div>
+<!-- Main Course -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/20">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹5,40,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Sous-vide Kadhai Exotic Vegetables, Kashmiri Dum Aloo, Saffron Pulav
+              </p>
+</div>
+<!-- Live Counters -->
+<div class="h-28 p-4 flex flex-col justify-center">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹2,20,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Robata Skewers, Live Parmesan Wheels with Gnocchi, Spanish Churros &amp; Crepes
+              </p>
+</div>
+<!-- Desserts -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/20">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹1,50,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Pistachio Baklava Cones, Modern Ghevar Cake Slices, Smoked Matcha Kulfi
+              </p>
+</div>
+<!-- Staffing -->
+<div class="h-28 p-4 flex flex-col justify-center">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹1,20,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                Signature Concierge Stewards &amp; Dedicated Sommelier Service Table-side
+              </p>
+</div>
+<!-- Logistics -->
+<div class="h-28 p-4 flex flex-col justify-center bg-surface-container-low/20">
+<span class="font-title-md text-title-md text-on-surface font-semibold">₹80,000</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
+                5-Star Clean Room Protocol, Custom Hand-Carved Ice Sculpture Displays
+              </p>
+</div>
+<!-- Grand Totals -->
+<div class="h-44 p-4 flex flex-col justify-center bg-surface-container-low/40">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Subtotal + GST:</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">₹14,30,000</span>
+</div>
+<div class="mt-2 pt-2 flex items-baseline justify-between">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">₹3,575</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">/ pax</span>
+</div>
+<div class="mt-2">
+<span class="inline-flex items-center gap-1 bg-surface-container text-on-surface-variant px-2.5 py-1 rounded-full font-label-sm text-label-sm font-medium">
+                  + ₹625 / plate vs Lowest
+                </span>
+</div>
+</div>
+<!-- Action CTA -->
+<div class="h-24 p-4 flex items-center justify-center">
+<button class="w-full py-3 px-4 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1 transition-all shadow-sm" id="cta-mehfil" onclick="setViewState('decided')">
+<span>Select Winner</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 5: Food Tasting Notes, Milestones & Protocol Accordions -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-2">
+<!-- Food Tasting Review Summary -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">rate_review</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Tasting Committee Notes</h4>
+</div>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold">Session Complete</span>
+</div>
+<div class="flex flex-col gap-3 font-body-sm text-body-sm text-on-surface-variant">
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Rajwada Caterers (Nov 2)</span>
+<span class="text-secondary font-semibold">9.6 / 10 Score</span>
+</div>
+<p class="italic text-on-surface-variant">"Dal Baati and Gatta Curry received unanimous acclaim from Joshi elders. Ker Sangri flavor balanced exceptionally well."</p>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Shahi Rasoi (Nov 4)</span>
+<span class="text-on-surface font-semibold">8.9 / 10 Score</span>
+</div>
+<p class="italic text-on-surface-variant">"Biryani and Chaat bar were excellent. Paneer gravy deemed slightly richer than requested for late-night reception dining."</p>
+</div>
+</div>
+</div>
+<!-- Payment Milestones & Commercial Conditions -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">payments</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Payment Tranches</h4>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Standard Folio Policy</span>
+</div>
+<div class="space-y-3 font-body-sm text-body-sm">
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-sm text-label-sm font-bold">1</span>
+<span class="font-medium text-on-surface">25% Token Advance</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">At Agreement Signing</span>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-sm text-label-sm font-bold">2</span>
+<span class="font-medium text-on-surface">50% Kitchen Mobilization</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">T-14 Days Pre-Event</span>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm font-bold">3</span>
+<span class="font-medium text-on-surface">25% Final Settlement</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Post-Reception Audit</span>
+</div>
+</div>
+</div>
+<div class="pt-3 font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">security</span>
+          Escrow held via The Royal Knot Client Trust Ledger.
+        </div>
+</div>
+<!-- Palace Compliance & Logistics Rules -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">verified_user</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Palace Venue Compliance</h4>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Mewar Rules</span>
+</div>
+<ul class="space-y-2.5 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>Pure Vegetarian Requirement:</strong> Venue strictly prohibits non-vegetarian ingredients on Mewar banquet premises.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>Heritage Flame Policy:</strong> Open wood-fire grilling confined exclusively to the designated North Courtyard jharokha zone.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>Staff Background Check:</strong> All 45 service personnel must wear registered photo identity passes issued by Lake Palace Security.</span>
+</li>
+</ul>
+</div>
+<div class="pt-3 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Lead Coordinator: <strong>Pooja Rathore</strong></span>
+<span class="text-secondary font-semibold">Heritage Ops HQ</span>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>
