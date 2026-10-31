@@ -1,11 +1,13 @@
+from decimal import Decimal
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
 from . import services
-from .forms import LeadFoing
-from .models import Lead, Quote, ScheduleEvent, Task, Wedding, WeddingVendor    
+from .forms import ExtraChargeForm, LeadForm
+from .models import ExtraCharge, Lead, Quote, ScheduleEvent, Task, Wedding, WeddingVendor    
 
 
 @login_required
@@ -93,7 +95,7 @@ def task_move(request, task_id):
     except services.ServiceError as e:
         messages.error(request, str(e))
     return redirect("plan", wedding_id=task.wedding_id)
-    @login_required
+@login_required
 def timeline(request, wedding_id):
     wedding = get_object_or_404(Wedding, pk=wedding_id)
     return render(request, "core/timeline.html", {
@@ -125,3 +127,224 @@ def event_status(request, event_id):
     except services.ServiceError as e:
         messages.error(request, str(e))
     return redirect("timeline", wedding_id=event.wedding_id)
+
+
+# ---------- Scene 5: post-wedding settlement ----------
+@login_required
+def settlement(request, wedding_id=None, id=None):
+    wedding = get_object_or_404(Wedding, pk=wedding_id or id)
+    rows = services.compute_settlement(wedding)
+    client = services.client_invoice(wedding)
+    extras = wedding.extras.select_related("wedding_vendor__vendor").all()
+    extra_form = ExtraChargeForm(wedding=wedding)
+    return render(request, "core/settlement.html", {
+        "wedding": wedding,
+        "rows": rows,
+        "extras": extras,
+        "client": client,
+        "client_total": client["total"],
+        "extra_form": extra_form,
+    })
+
+
+@login_required
+@require_POST
+def extra_add(request, wedding_id=None, id=None):
+    wedding = get_object_or_404(Wedding, pk=wedding_id or id)
+    form = ExtraChargeForm(request.POST, wedding=wedding)
+    if form.is_valid():
+        try:
+            services.add_extra_charge(
+                wedding=wedding,
+                wedding_vendor=form.cleaned_data.get("wedding_vendor"),
+                description=form.cleaned_data.get("description"),
+                quantity=form.cleaned_data.get("quantity"),
+                client_unit_price=form.cleaned_data.get("client_unit_price"),
+                vendor_unit_cost=form.cleaned_data.get("vendor_unit_cost") or Decimal("0"),
+            )
+            messages.success(request, "Extra charge added.")
+        except services.ServiceError as e:
+            messages.error(request, str(e))
+    else:
+        for field, errors in form.errors.items():
+            for err in errors:
+                messages.error(request, f"{field}: {err}" if field != "__all__" else err)
+    return redirect("settlement", wedding_id=wedding.id)
+
+
+@login_required
+@require_POST
+def extra_approve(request, extra_id=None, id=None):
+    extra = get_object_or_404(ExtraCharge, pk=extra_id or id)
+    try:
+        services.approve_extra(extra)
+        messages.success(request, f"Extra charge '{extra.description}' approved.")
+    except services.ServiceError as e:
+        messages.error(request, str(e))
+    return redirect("settlement", wedding_id=extra.wedding_id)
+
+
+@login_required
+@require_POST
+def vendor_pay(request, booking_id=None, id=None):
+    booking = get_object_or_404(WeddingVendor, pk=booking_id or id)
+    kind = request.POST.get("kind")
+    amount_raw = request.POST.get("amount", "").strip()
+    reference = request.POST.get("reference", "").strip()
+
+    amount = None
+    if amount_raw:
+        try:
+            amount = Decimal(amount_raw)
+        except Exception:
+            messages.error(request, "Invalid payment amount.")
+            return redirect("settlement", wedding_id=booking.wedding_id)
+
+    try:
+        services.record_vendor_payment(
+            wedding_vendor=booking,
+            kind=kind,
+            amount=amount,
+            user=request.user,
+            reference=reference,
+        )
+        messages.success(request, f"Payment recorded for {booking.vendor.name}.")
+    except services.ServiceError as e:
+        messages.error(request, str(e))
+    return redirect("settlement", wedding_id=booking.wedding_id)
+
+
+@login_required
+@require_POST
+def client_pay(request, wedding_id=None, id=None):
+    wedding = get_object_or_404(Wedding, pk=wedding_id or id)
+    kind = request.POST.get("kind")
+    try:
+        services.pay_client_stage(wedding, kind)
+        messages.success(request, f"Client payment for '{kind}' recorded.")
+    except services.ServiceError as e:
+        messages.error(request, str(e))
+    return redirect("settlement", wedding_id=wedding.id)
+
+
+@login_required
+@require_POST
+def settlement_close(request, wedding_id=None, id=None):
+    wedding = get_object_or_404(Wedding, pk=wedding_id or id)
+    try:
+        services.close_settlement(wedding)
+        messages.success(request, f"Wedding settlement closed for {wedding.couple_name}.")
+    except services.ServiceError as e:
+        messages.error(request, str(e))
+    return redirect("settlement", wedding_id=wedding.id)
+
+
+
+# ---------- Scene 5: post-wedding settlement ----------
+@login_required
+def settlement(request, wedding_id=None, id=None):
+    wedding = get_object_or_404(Wedding, pk=wedding_id or id)
+    rows = services.compute_settlement(wedding)
+    client = services.client_invoice(wedding)
+    extras = wedding.extras.select_related("wedding_vendor__vendor").all()
+    extra_form = ExtraChargeForm(wedding=wedding)
+    return render(request, "core/settlement.html", {
+        "wedding": wedding,
+        "rows": rows,
+        "extras": extras,
+        "client": client,
+        "client_total": client["total"],
+        "extra_form": extra_form,
+    })
+
+
+@login_required
+@require_POST
+def extra_add(request, wedding_id=None, id=None):
+    wedding = get_object_or_404(Wedding, pk=wedding_id or id)
+    form = ExtraChargeForm(request.POST, wedding=wedding)
+    if form.is_valid():
+        try:
+            services.add_extra_charge(
+                wedding=wedding,
+                wedding_vendor=form.cleaned_data.get("wedding_vendor"),
+                description=form.cleaned_data.get("description"),
+                quantity=form.cleaned_data.get("quantity"),
+                client_unit_price=form.cleaned_data.get("client_unit_price"),
+                vendor_unit_cost=form.cleaned_data.get("vendor_unit_cost") or Decimal("0"),
+            )
+            messages.success(request, "Extra charge added.")
+        except services.ServiceError as e:
+            messages.error(request, str(e))
+    else:
+        for field, errors in form.errors.items():
+            for err in errors:
+                messages.error(request, f"{field}: {err}" if field != "__all__" else err)
+    return redirect("settlement", wedding_id=wedding.id)
+
+
+@login_required
+@require_POST
+def extra_approve(request, extra_id=None, id=None):
+    extra = get_object_or_404(ExtraCharge, pk=extra_id or id)
+    try:
+        services.approve_extra(extra)
+        messages.success(request, f"Extra charge '{extra.description}' approved.")
+    except services.ServiceError as e:
+        messages.error(request, str(e))
+    return redirect("settlement", wedding_id=extra.wedding_id)
+
+
+@login_required
+@require_POST
+def vendor_pay(request, booking_id=None, id=None):
+    booking = get_object_or_404(WeddingVendor, pk=booking_id or id)
+    kind = request.POST.get("kind")
+    amount_raw = request.POST.get("amount", "").strip()
+    reference = request.POST.get("reference", "").strip()
+
+    amount = None
+    if amount_raw:
+        try:
+            amount = Decimal(amount_raw)
+        except Exception:
+            messages.error(request, "Invalid payment amount.")
+            return redirect("settlement", wedding_id=booking.wedding_id)
+
+    try:
+        services.record_vendor_payment(
+            wedding_vendor=booking,
+            kind=kind,
+            amount=amount,
+            user=request.user,
+            reference=reference,
+        )
+        messages.success(request, f"Payment recorded for {booking.vendor.name}.")
+    except services.ServiceError as e:
+        messages.error(request, str(e))
+    return redirect("settlement", wedding_id=booking.wedding_id)
+
+
+@login_required
+@require_POST
+def client_pay(request, wedding_id=None, id=None):
+    wedding = get_object_or_404(Wedding, pk=wedding_id or id)
+    kind = request.POST.get("kind")
+    try:
+        services.pay_client_stage(wedding, kind)
+        messages.success(request, f"Client payment for '{kind}' recorded.")
+    except services.ServiceError as e:
+        messages.error(request, str(e))
+    return redirect("settlement", wedding_id=wedding.id)
+
+
+@login_required
+@require_POST
+def settlement_close(request, wedding_id=None, id=None):
+    wedding = get_object_or_404(Wedding, pk=wedding_id or id)
+    try:
+        services.close_settlement(wedding)
+        messages.success(request, f"Wedding settlement closed for {wedding.couple_name}.")
+    except services.ServiceError as e:
+        messages.error(request, str(e))
+    return redirect("settlement", wedding_id=wedding.id)

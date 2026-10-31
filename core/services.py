@@ -6,10 +6,19 @@ from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.utils import timezone
 
-from .models import ClientPayment, Lead, Quote, Task, Wedding, WeddingVendor
 from .plan_template import TASK_TEMPLATE
-from .models import (ClientPayment, Lead, Quote, ScheduleEvent, Task,
-                     VendorCheckIn, Wedding, WeddingVendor)     
+from .models import (
+    ClientPayment,
+    ExtraCharge,
+    Lead,
+    Quote,
+    ScheduleEvent,
+    Task,
+    VendorCheckIn,
+    VendorPayment,
+    Wedding,
+    WeddingVendor,
+)
 
 User = get_user_model()
 
@@ -174,3 +183,430 @@ def update_event_status(event, status):
     event.status = status
     event.save(update_fields=["status"])
     return event
+
+
+# ---------- Scene 5: post-wedding settlement ----------
+def add_extra_charge(wedding, wedding_vendor, description, quantity, client_unit_price, vendor_unit_cost=Decimal("0")):
+    """Add an extra charge to a wedding. Quantity and client price must be > 0."""
+    if quantity is None or client_unit_price is None:
+        raise ServiceError("Quantity and client unit price are required.")
+    try:
+        quantity = Decimal(str(quantity))
+    except Exception:
+        raise ServiceError("Invalid quantity.")
+    try:
+        client_unit_price = Decimal(str(client_unit_price))
+    except Exception:
+        raise ServiceError("Invalid client unit price.")
+    try:
+        vendor_unit_cost = Decimal(str(vendor_unit_cost if vendor_unit_cost is not None else 0))
+    except Exception:
+        raise ServiceError("Invalid vendor unit cost.")
+
+    if quantity <= Decimal("0"):
+        raise ServiceError("Quantity must be greater than zero.")
+    if client_unit_price <= Decimal("0"):
+        raise ServiceError("Client unit price must be greater than zero.")
+    if vendor_unit_cost < Decimal("0"):
+        raise ServiceError("Vendor unit cost cannot be negative.")
+    if wedding_vendor is not None and wedding_vendor.wedding_id != wedding.id:
+        raise ServiceError("Vendor booking does not belong to this wedding.")
+
+    return ExtraCharge.objects.create(
+        wedding=wedding,
+        wedding_vendor=wedding_vendor,
+        description=description,
+        quantity=quantity,
+        client_unit_price=client_unit_price,
+        vendor_unit_cost=vendor_unit_cost,
+        approved=False,
+    )
+
+
+def approve_extra(extra):
+    """Approve an extra charge. Cannot approve twice."""
+    if extra.approved:
+        raise ServiceError("This extra charge is already approved.")
+    extra.approved = True
+    extra.save(update_fields=["approved"])
+    return extra
+
+
+def compute_settlement(wedding):
+    """Return a settlement row dict per vendor booking, ordered by role."""
+    rows = []
+    bookings = (wedding.vendors.select_related("vendor")
+                .prefetch_related("extras", "payments")
+                .order_by("role"))
+    for wv in bookings:
+        agreed = wv.agreed_amount
+        approved_extras = [e for e in wv.extras.all() if e.approved]
+        extras = sum((e.vendor_total for e in approved_extras), Decimal("0"))
+        owed = agreed + extras
+        paid_payments = [p for p in wv.payments.all() if p.paid_on is not None]
+        paid = sum((p.amount for p in paid_payments), Decimal("0"))
+        remaining = owed - paid
+        if remaining <= Decimal("0"):
+            status = "paid"
+        elif paid > Decimal("0"):
+            status = "partial"
+        else:
+            status = "unpaid"
+        advance = next((p for p in wv.payments.all() if p.kind == VendorPayment.Kind.ADVANCE), None)
+        balance = next((p for p in wv.payments.all() if p.kind == VendorPayment.Kind.BALANCE), None)
+        rows.append({
+            "booking": wv,
+            "agreed": agreed,
+            "extras": extras,
+            "owed": owed,
+            "paid": paid,
+            "remaining": remaining,
+            "status": status,
+            "advance": advance,
+            "balance": balance,
+        })
+    return rows
+
+
+@transaction.atomic
+def record_vendor_payment(wedding_vendor, kind, amount=None, user=None, reference=""):
+    """Record a vendor payment (advance or balance). Atomic with select_for_update."""
+    wedding_vendor = WeddingVendor.objects.select_for_update().get(pk=wedding_vendor.pk)
+
+    if kind not in (VendorPayment.Kind.ADVANCE, VendorPayment.Kind.BALANCE):
+        raise ServiceError("Payment kind must be 'advance' or 'balance'.")
+
+    # Payment row of that kind
+    payment = wedding_vendor.payments.select_for_update().filter(kind=kind).first()
+    if payment and payment.paid_on is not None:
+        raise ServiceError(f"A {kind} payment has already been recorded.")
+
+    # Calculate owed and paid
+    agreed = wedding_vendor.agreed_amount
+    extras = sum((e.vendor_total for e in wedding_vendor.extras.filter(approved=True)), Decimal("0"))
+    owed = agreed + extras
+    paid = sum((p.amount for p in wedding_vendor.payments.filter(paid_on__isnull=False)), Decimal("0"))
+
+    if kind == VendorPayment.Kind.BALANCE:
+        advance_pmt = wedding_vendor.payments.filter(kind=VendorPayment.Kind.ADVANCE, paid_on__isnull=False).first()
+        if not advance_pmt:
+            raise ServiceError("The advance payment must be paid before paying balance.")
+        amount = owed - paid
+        if amount <= Decimal("0"):
+            raise ServiceError("No remaining balance to pay.")
+    elif kind == VendorPayment.Kind.ADVANCE:
+        if amount is None or str(amount).strip() == "":
+            if payment and payment.amount:
+                amount = payment.amount
+            else:
+                raise ServiceError("An advance amount is required.")
+        else:
+            try:
+                amount = Decimal(str(amount))
+            except Exception:
+                raise ServiceError("Invalid payment amount.")
+        if amount <= Decimal("0"):
+            raise ServiceError("Payment amount must be greater than zero.")
+
+    if paid + amount > owed:
+        raise ServiceError(f"Payment of {amount} would exceed total owed ({owed}). Already paid: {paid}.")
+
+    today = timezone.localdate()
+    if payment:
+        payment.amount = amount
+        payment.paid_on = today
+        if reference:
+            payment.reference = reference
+        payment.save()
+    else:
+        payment = VendorPayment.objects.create(
+            wedding_vendor=wedding_vendor,
+            kind=kind,
+            amount=amount,
+            paid_on=today,
+            reference=reference or "",
+        )
+    return payment
+
+
+def client_invoice(wedding):
+    """Return invoice breakdown dict for client."""
+    package_price = wedding.package_price
+    extras = list(wedding.extras.filter(approved=True))
+    extras_total = sum((e.client_total for e in extras), Decimal("0"))
+    total = package_price + extras_total
+    payments = list(wedding.client_payments.order_by("due_date"))
+    received = sum((p.amount for p in payments if p.paid_on is not None), Decimal("0"))
+    balance_due = total - received
+    return {
+        "package_price": package_price,
+        "extras": extras,
+        "extras_total": extras_total,
+        "total": total,
+        "received": received,
+        "balance_due": balance_due,
+        "payments": payments,
+    }
+
+
+@transaction.atomic
+def pay_client_stage(wedding, kind):
+    """Mark a client milestone payment as paid. If final, adjust amount with extras."""
+    try:
+        stage = wedding.client_payments.select_for_update().get(kind=kind)
+    except ClientPayment.DoesNotExist:
+        raise ServiceError(f"Payment stage '{kind}' does not exist.")
+
+    if stage.paid_on is not None:
+        raise ServiceError(f"Payment stage '{stage.get_kind_display()}' is already paid.")
+
+    if kind == ClientPayment.Kind.FINAL:
+        invoice = client_invoice(wedding)
+        other_stages = wedding.client_payments.exclude(pk=stage.pk)
+        other_total = sum((p.amount for p in other_stages), Decimal("0"))
+        stage.amount = invoice["total"] - other_total
+
+    today = timezone.localdate()
+    stage.paid_on = today
+    stage.save()
+    return stage
+
+
+@transaction.atomic
+def close_settlement(wedding):
+    """Close the settlement for a wedding. Sets status to Settled."""
+    wedding = Wedding.objects.select_for_update().get(pk=wedding.pk)
+
+    if wedding.status == Wedding.Status.SETTLED:
+        raise ServiceError("This wedding is already settled.")
+
+    if wedding.extras.filter(approved=False).exists():
+        raise ServiceError("Cannot close settlement: there are unapproved extra charges.")
+
+    rows = compute_settlement(wedding)
+    unpaid_vendors = [r["booking"].vendor.name for r in rows if r["remaining"] > Decimal("0")]
+    if unpaid_vendors:
+        names = ", ".join(unpaid_vendors)
+        raise ServiceError(f"Cannot close settlement: vendors with outstanding balance: {names}.")
+
+    invoice = client_invoice(wedding)
+    if invoice["balance_due"] > Decimal("0"):
+        raise ServiceError(f"Cannot close settlement: client has an outstanding balance of {invoice['balance_due']}.")
+
+    wedding.status = Wedding.Status.SETTLED
+    wedding.save(update_fields=["status"])
+    return wedding
+
+
+
+# ---------- Scene 5: post-wedding settlement ----------
+def add_extra_charge(wedding, wedding_vendor, description, quantity, client_unit_price, vendor_unit_cost=Decimal("0")):
+    """Add an extra charge to a wedding. Quantity and client price must be > 0."""
+    if quantity is None or client_unit_price is None:
+        raise ServiceError("Quantity and client unit price are required.")
+    try:
+        quantity = Decimal(str(quantity))
+    except Exception:
+        raise ServiceError("Invalid quantity.")
+    try:
+        client_unit_price = Decimal(str(client_unit_price))
+    except Exception:
+        raise ServiceError("Invalid client unit price.")
+    try:
+        vendor_unit_cost = Decimal(str(vendor_unit_cost if vendor_unit_cost is not None else 0))
+    except Exception:
+        raise ServiceError("Invalid vendor unit cost.")
+
+    if quantity <= Decimal("0"):
+        raise ServiceError("Quantity must be greater than zero.")
+    if client_unit_price <= Decimal("0"):
+        raise ServiceError("Client unit price must be greater than zero.")
+    if vendor_unit_cost < Decimal("0"):
+        raise ServiceError("Vendor unit cost cannot be negative.")
+    if wedding_vendor is not None and wedding_vendor.wedding_id != wedding.id:
+        raise ServiceError("Vendor booking does not belong to this wedding.")
+
+    return ExtraCharge.objects.create(
+        wedding=wedding,
+        wedding_vendor=wedding_vendor,
+        description=description,
+        quantity=quantity,
+        client_unit_price=client_unit_price,
+        vendor_unit_cost=vendor_unit_cost,
+        approved=False,
+    )
+
+
+def approve_extra(extra):
+    """Approve an extra charge. Cannot approve twice."""
+    if extra.approved:
+        raise ServiceError("This extra charge is already approved.")
+    extra.approved = True
+    extra.save(update_fields=["approved"])
+    return extra
+
+
+def compute_settlement(wedding):
+    """Return a settlement row dict per vendor booking, ordered by role."""
+    rows = []
+    bookings = (wedding.vendors.select_related("vendor")
+                .prefetch_related("extras", "payments")
+                .order_by("role"))
+    for wv in bookings:
+        agreed = wv.agreed_amount
+        approved_extras = [e for e in wv.extras.all() if e.approved]
+        extras = sum((e.vendor_total for e in approved_extras), Decimal("0"))
+        owed = agreed + extras
+        paid_payments = [p for p in wv.payments.all() if p.paid_on is not None]
+        paid = sum((p.amount for p in paid_payments), Decimal("0"))
+        remaining = owed - paid
+        if remaining <= Decimal("0"):
+            status = "paid"
+        elif paid > Decimal("0"):
+            status = "partial"
+        else:
+            status = "unpaid"
+        advance = next((p for p in wv.payments.all() if p.kind == VendorPayment.Kind.ADVANCE), None)
+        balance = next((p for p in wv.payments.all() if p.kind == VendorPayment.Kind.BALANCE), None)
+        rows.append({
+            "booking": wv,
+            "agreed": agreed,
+            "extras": extras,
+            "owed": owed,
+            "paid": paid,
+            "remaining": remaining,
+            "status": status,
+            "advance": advance,
+            "balance": balance,
+        })
+    return rows
+
+
+@transaction.atomic
+def record_vendor_payment(wedding_vendor, kind, amount=None, user=None, reference=""):
+    """Record a vendor payment (advance or balance). Atomic with select_for_update."""
+    wedding_vendor = WeddingVendor.objects.select_for_update().get(pk=wedding_vendor.pk)
+
+    if kind not in (VendorPayment.Kind.ADVANCE, VendorPayment.Kind.BALANCE):
+        raise ServiceError("Payment kind must be 'advance' or 'balance'.")
+
+    # Payment row of that kind
+    payment = wedding_vendor.payments.select_for_update().filter(kind=kind).first()
+    if payment and payment.paid_on is not None:
+        raise ServiceError(f"A {kind} payment has already been recorded.")
+
+    # Calculate owed and paid
+    agreed = wedding_vendor.agreed_amount
+    extras = sum((e.vendor_total for e in wedding_vendor.extras.filter(approved=True)), Decimal("0"))
+    owed = agreed + extras
+    paid = sum((p.amount for p in wedding_vendor.payments.filter(paid_on__isnull=False)), Decimal("0"))
+
+    if kind == VendorPayment.Kind.BALANCE:
+        advance_pmt = wedding_vendor.payments.filter(kind=VendorPayment.Kind.ADVANCE, paid_on__isnull=False).first()
+        if not advance_pmt:
+            raise ServiceError("The advance payment must be paid before paying balance.")
+        amount = owed - paid
+        if amount <= Decimal("0"):
+            raise ServiceError("No remaining balance to pay.")
+    elif kind == VendorPayment.Kind.ADVANCE:
+        if amount is None or str(amount).strip() == "":
+            if payment and payment.amount:
+                amount = payment.amount
+            else:
+                raise ServiceError("An advance amount is required.")
+        else:
+            try:
+                amount = Decimal(str(amount))
+            except Exception:
+                raise ServiceError("Invalid payment amount.")
+        if amount <= Decimal("0"):
+            raise ServiceError("Payment amount must be greater than zero.")
+
+    if paid + amount > owed:
+        raise ServiceError(f"Payment of {amount} would exceed total owed ({owed}). Already paid: {paid}.")
+
+    today = timezone.localdate()
+    if payment:
+        payment.amount = amount
+        payment.paid_on = today
+        if reference:
+            payment.reference = reference
+        payment.save()
+    else:
+        payment = VendorPayment.objects.create(
+            wedding_vendor=wedding_vendor,
+            kind=kind,
+            amount=amount,
+            paid_on=today,
+            reference=reference or "",
+        )
+    return payment
+
+
+def client_invoice(wedding):
+    """Return invoice breakdown dict for client."""
+    package_price = wedding.package_price
+    extras = list(wedding.extras.filter(approved=True))
+    extras_total = sum((e.client_total for e in extras), Decimal("0"))
+    total = package_price + extras_total
+    payments = list(wedding.client_payments.order_by("due_date"))
+    received = sum((p.amount for p in payments if p.paid_on is not None), Decimal("0"))
+    balance_due = total - received
+    return {
+        "package_price": package_price,
+        "extras": extras,
+        "extras_total": extras_total,
+        "total": total,
+        "received": received,
+        "balance_due": balance_due,
+        "payments": payments,
+    }
+
+
+@transaction.atomic
+def pay_client_stage(wedding, kind):
+    """Mark a client milestone payment as paid. If final, adjust amount with extras."""
+    try:
+        stage = wedding.client_payments.select_for_update().get(kind=kind)
+    except ClientPayment.DoesNotExist:
+        raise ServiceError(f"Payment stage '{kind}' does not exist.")
+
+    if stage.paid_on is not None:
+        raise ServiceError(f"Payment stage '{stage.get_kind_display()}' is already paid.")
+
+    if kind == ClientPayment.Kind.FINAL:
+        invoice = client_invoice(wedding)
+        other_stages = wedding.client_payments.exclude(pk=stage.pk)
+        other_total = sum((p.amount for p in other_stages), Decimal("0"))
+        stage.amount = invoice["total"] - other_total
+
+    today = timezone.localdate()
+    stage.paid_on = today
+    stage.save()
+    return stage
+
+
+@transaction.atomic
+def close_settlement(wedding):
+    """Close the settlement for a wedding. Sets status to Settled."""
+    wedding = Wedding.objects.select_for_update().get(pk=wedding.pk)
+
+    if wedding.status == Wedding.Status.SETTLED:
+        raise ServiceError("This wedding is already settled.")
+
+    if wedding.extras.filter(approved=False).exists():
+        raise ServiceError("Cannot close settlement: there are unapproved extra charges.")
+
+    rows = compute_settlement(wedding)
+    unpaid_vendors = [r["booking"].vendor.name for r in rows if r["remaining"] > Decimal("0")]
+    if unpaid_vendors:
+        names = ", ".join(unpaid_vendors)
+        raise ServiceError(f"Cannot close settlement: vendors with outstanding balance: {names}.")
+
+    invoice = client_invoice(wedding)
+    if invoice["balance_due"] > Decimal("0"):
+        raise ServiceError(f"Cannot close settlement: client has an outstanding balance of {invoice['balance_due']}.")
+
+    wedding.status = Wedding.Status.SETTLED
+    wedding.save(update_fields=["status"])
+    return wedding
